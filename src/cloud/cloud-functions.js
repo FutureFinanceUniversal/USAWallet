@@ -1,3 +1,5 @@
+const Moralis = {}; // just to hide IDE errors
+
 Moralis.Cloud.define("getTokens", async (request) => {
   const { userAddress } = request.params;
   if (!userAddress) {
