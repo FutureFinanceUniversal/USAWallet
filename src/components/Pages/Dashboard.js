@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,
@@ -14,8 +6,8 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { useCoinData } from "../../hooks/coinData";
 import { WarningIcon } from "@chakra-ui/icons";
+import { useCoinData } from "../../hooks/coinData";
 import { c2 } from "../Support/utils";
 
 export const Dashboard = () => {
@@ -32,18 +24,10 @@ export const Dashboard = () => {
     );
   } else {
     return (
-      <Container>
-        <Box alignContent="center">
-          <Heading>Dashboard</Heading>
-        </Box>
-        <VStack boderWidth="5px">
-          <Box>
-            <Heading>Portfolio Total Value</Heading>
-            {c2.format(portfolioValue)}
-          </Box>
-          <Box>
-            <Heading>Tokens</Heading>
-          </Box>
+      <VStack boderWidth="5px" width="50vw" align="center">
+        <Heading>Dashboard</Heading>
+        <Flex borderWidth="5px" padding="20px">
+          <Text>Portfolio Total Value: {c2.format(portfolioValue)}</Text>
           <Accordion allowToggle>
             {coinList.map((token, i) => (
               <AccordionItem>
@@ -69,8 +53,8 @@ export const Dashboard = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </VStack>
-      </Container>
+        </Flex>
+      </VStack>
     );
   }
 };
