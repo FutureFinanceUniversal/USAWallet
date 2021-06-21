@@ -1,18 +1,11 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Image,
-  Spacer,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { Box, Flex, Image, Spacer, Text } from "@chakra-ui/react";
+
+import { ExpertButton } from "./ExpertButton";
+import { LightSwitch } from "./LightSwitch";
+import { AuthButton } from "./AuthButton";
+import { ProfileAvatar } from "./ProfileAvatar";
 
 export const TopNavBar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
       className="HeaderOuterFlex"
@@ -28,17 +21,10 @@ export const TopNavBar = () => {
         <Text> USA Wallet</Text>
       </Box>
       <Spacer />
-      <Button boxShadow="dark-lg" mr={2}>
-        Expert Mode
-      </Button>
-      <IconButton
-        mr={2}
-        aria-label="Toggle Darkmode"
-        icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-        boxShadow="dark-lg"
-        onClick={toggleColorMode}
-      />
-      <Avatar boxShadow="dark-lg" />
+      <ExpertButton />
+      <LightSwitch />
+      <AuthButton />
+      <ProfileAvatar />
     </Flex>
   );
 };

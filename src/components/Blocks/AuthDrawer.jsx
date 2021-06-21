@@ -1,18 +1,17 @@
-import { Button, HStack, VStack, Input } from "@chakra-ui/react";
+import { Button, Input, HStack, VStack } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { useState } from "react";
 
 export const AuthDrawer = (props) => {
-  console.log("AuthDrawer initializing...");
   const {
     authenticate,
+    isAuthenticating,
     authError,
     isAuthenticated,
-    isAuthenticating,
     login,
-    signup,
     setUserData,
+    signup,
     user,
   } = useMoralis();
 
@@ -22,16 +21,19 @@ export const AuthDrawer = (props) => {
   const [email, setEmail] = useState(user ? user.attributes.email : "");
   const [password, setPassword] = useState("");
 
+  const handleSignUp = () => {
+    console.log("handleSignUp...");
+    signup(userName ? userName : email, password, email, { usePost: true });
+  };
+
   const handleLogIn = () => {
-    console.log("handleLogIn...");
     login(email, password === "" ? undefined : password, {
       usePost: true,
     });
   };
 
-  const handleSignUp = () => {
-    console.log("handleSignUp...");
-    signup(userName, password, email, { usePost: true });
+  const handleAuthenticate = () => {
+    authenticate({ usePost: true });
   };
 
   const handleSave = () => {
@@ -85,38 +87,27 @@ export const AuthDrawer = (props) => {
         onChange={(event) => setPassword(event.currentTarget.value)}
         boxShadow="dark-lg"
       />
+
       {!isAuthenticated ? (
         <>
           <HStack>
-            <Button
-              isLoading={isAuthenticating}
-              onClick={handleSignUp}
-              boxShadow="dark-lg"
-            >
+            <Button onClick={handleSignUp} boxShadow="dark-lg">
               Sign up
             </Button>
-            <Button
-              isLoading={isAuthenticating}
-              onClick={handleLogIn}
-              boxShadow="dark-lg"
-            >
+            <Button onClick={handleLogIn} boxShadow="dark-lg">
               Log in
             </Button>
           </HStack>
           <Button
             isLoading={isAuthenticating}
-            onClick={authenticate({ usePost: true })}
+            onClick={handleAuthenticate}
             boxShadow="dark-lg"
           >
             Use MetaMask
           </Button>
         </>
       ) : (
-        <Button
-          isLoading={isAuthenticating}
-          onClick={handleSave}
-          boxShadow="dark-lg"
-        >
+        <Button onClick={handleSave} boxShadow="dark-lg">
           Update signature
         </Button>
       )}
