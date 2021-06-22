@@ -4,36 +4,37 @@ import { useColorMode } from "@chakra-ui/react";
 import { TopNavBar } from "./Blocks/TopNavBar";
 import { LeftGutter } from "./Blocks/LeftGutter";
 import { MainStage } from "./Blocks/MainStage";
+import { SideShow } from "./Blocks/SideShow";
 import { RightGutter } from "./Blocks/RightGutter";
 import { BottomFooter } from "./Blocks/BottomFooter";
-import darkBG from "../media/wallpapers/dark1.jpg";
-import lightBG from "../media/wallpapers/light1.jpg";
 
 function App() {
   const { colorMode } = useColorMode();
   return (
     <Grid
-      className="AppOuterFlex"
+      className={`AppOuterFlex ${colorMode === "light" ? "lightBG" : "darkBG"}`}
       w="100vw"
       h="100vh"
       gap={3}
       templateColumns="repeat(10,1fr)"
       templateRows="repeat(10,1fr)"
-      bg={colorMode === "light" ? lightBG : darkBG}
     >
-      <GridItem colSpan={10} borderWidth={1} borderRadius="lg">
+      <GridItem colSpan={10}>
         <TopNavBar />
       </GridItem>
-      <GridItem rowSpan={8} colSpan={2} borderWidth={1} borderRadius="lg">
+      <GridItem rowSpan={8} colSpan={1}>
         <LeftGutter />
       </GridItem>
-      <GridItem rowSpan={8} colSpan={6} borderWidth={1} borderRadius="lg">
+      <GridItem rowSpan={8} colSpan={5} borderWidth={1} borderRadius="lg">
         <MainStage />
       </GridItem>
-      <GridItem rowSpan={8} colSpan={2} borderWidth={1} borderRadius="lg">
+      <GridItem rowSpan={8} colSpan={3} borderWidth={1} borderRadius="lg">
+        <SideShow />
+      </GridItem>
+      <GridItem rowSpan={8} colSpan={1}>
         <RightGutter />
       </GridItem>
-      <GridItem colSpan={10} borderWidth={1} borderRadius="lg">
+      <GridItem colSpan={10}>
         <BottomFooter />
       </GridItem>
     </Grid>

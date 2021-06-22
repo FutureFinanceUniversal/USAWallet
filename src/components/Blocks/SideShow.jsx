@@ -1,10 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
-export const RightGutter = () => {
+export const SideShow = () => {
   return (
     <Flex justifyContent="center">
-      <Text> </Text>
+      <Text>Side show.</Text>
     </Flex>
   );
 };

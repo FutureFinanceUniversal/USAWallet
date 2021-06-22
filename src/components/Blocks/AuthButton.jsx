@@ -1,3 +1,5 @@
+import React from "react";
+import "../AuthButton.css";
 import {
   Button,
   Drawer,
@@ -7,6 +9,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
@@ -15,6 +18,7 @@ import { AuthDrawer } from "./AuthDrawer";
 export const AuthButton = () => {
   const { isAuthenticated, logout } = useMoralis();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode } = useColorMode();
   return (
     <>
       {isAuthenticated ? (
@@ -33,11 +37,19 @@ export const AuthButton = () => {
             font-family="P22-Typewriter"
             boxShadow="dark-lg"
             mr={2}
+            mt={-2}
             onClick={onOpen}
           >
             Log In
           </Button>
-          <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            className={`AuthDrawer ${
+              colorMode === "light" ? "lightBG" : "darkBG"
+            }`}
+          >
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />

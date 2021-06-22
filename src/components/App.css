@@ -3,3 +3,22 @@
 * {
   font-family: P22-Typewriter;
 }
+
+.AppOuterFlex {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: -45vw;
+  background-size: 180vw;
+  background-clip: border-box;
+  background-repeat: repeat-y;
+}
+
+.AppOuterFlex.lightBG {
+  background-image: linear-gradient(70deg, blue, white, red);
+  background-image: url("../media/wallpapers/light1.svg");
+}
+.AppOuterFlex.darkBG {
+  background-color: linear-gradient(to right, blue, black, red);
+  background-image: url("../media/wallpapers/dark1.svg");
+  background-position: -50vw;
+}

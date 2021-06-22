@@ -1,0 +1,10 @@
+.email.verified {
+  border-width: 3px;
+  border-style: inset;
+  border-color: green;
+}
+.email.unverified {
+  border-width: 3px;
+  border-style: outset;
+  border-color: red;
+}

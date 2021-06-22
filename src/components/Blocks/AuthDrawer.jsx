@@ -2,6 +2,7 @@ import { Button, Input, HStack, VStack } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { useState } from "react";
+import "../AuthDrawer.css";
 
 export const AuthDrawer = (props) => {
   const {
@@ -46,6 +47,38 @@ export const AuthDrawer = (props) => {
     });
   };
 
+  const handlePasswordReset = () => {
+    if (email === "") {
+      alert("Please enter an e-mail, then retry 'Password reset'.");
+    } else {
+      // const appId = "CkGKKjw1WWWWNAo2GRMO1yPyjTrRx8YAIX4E8Q8q";
+      // const serverUrl = "https://jlodflimpqon.moralis.io:2053/server";
+      // Moralis.initialize(appId); // Application id from moralis.io
+      // Moralis.serverURL = serverUrl; //Server url from moralis.io
+
+      // Moralis.User
+      //   .requestPasswordReset(email)
+      //   .then(() => {
+      //     // Password reset request was sent successfully
+      alert("Password reset e-mail has been sent to " + email);
+      //     })
+      //     .catch((error) => {
+      //       // Show the error message somewhere
+      //       alert("Error: " + error.code + " " + error.message);
+      //     });
+      // }
+    }
+  };
+
+  // const emailClassName = () => {
+  //   if (isAuthenticated && !isAuthenticating) {
+  //     if (user && user.attributes.emailVerified) {
+  //       return "email verified";
+  //     }
+  //   }
+  //   return "email unverified";
+  // };
+
   return (
     <VStack
       spacing={6}
@@ -72,13 +105,20 @@ export const AuthDrawer = (props) => {
         />
       )}
       <Input
-        placeholder="Email"
+        className={isAuthenticated ? "email verified" : "email"}
+        placeholder="E-mail *"
         type="email"
         variant="filled"
         value={email}
         onChange={(event) => setEmail(event.currentTarget.value)}
         boxShadow="dark-lg"
       />
+      {user && user.attributes.emailVerified && (
+        <Alert status="warning">
+          <AlertIcon />
+          Check your email for validation link.
+        </Alert>
+      )}
       <Input
         placeholder="Password *"
         type="password"
@@ -99,6 +139,13 @@ export const AuthDrawer = (props) => {
             </Button>
           </HStack>
           <Button
+            onClick={handlePasswordReset}
+            boxShadow="dark-lg"
+            disabled="true"
+          >
+            Password Reset
+          </Button>
+          <Button
             isLoading={isAuthenticating}
             onClick={handleAuthenticate}
             boxShadow="dark-lg"
@@ -107,9 +154,11 @@ export const AuthDrawer = (props) => {
           </Button>
         </>
       ) : (
-        <Button onClick={handleSave} boxShadow="dark-lg">
-          Update signature
-        </Button>
+        <>
+          <Button onClick={handleSave} boxShadow="dark-lg">
+            Update signature.
+          </Button>
+        </>
       )}
     </VStack>
   );

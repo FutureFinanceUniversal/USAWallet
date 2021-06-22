@@ -1,0 +1,15 @@
+.AuthDrawer {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-clip: border-box;
+  border-width: 5px;
+  border-style: "dashed";
+}
+
+.AuthDrawer.lightBG {
+  background-image: url("../media/wallpapers/light3.svg");
+}
+.authDrawer.darkBG {
+  background-image: url("../media/wallpapers/dark3.svg");
+  background-position: -50vw;
+}
