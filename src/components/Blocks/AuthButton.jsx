@@ -22,6 +22,7 @@ export const AuthButton = () => {
           font-family="P22-Typewriter"
           boxShadow="dark-lg"
           mr={2}
+          mt={-2}
           onClick={() => logout()}
         >
           Log Out

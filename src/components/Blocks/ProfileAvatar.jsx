@@ -18,7 +18,7 @@ export const ProfileAvatar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Avatar boxShadow="dark-lg" mr={2} onClick={onOpen} />
+      <Avatar boxShadow="dark-lg" mr={2} mt={-2} onClick={onOpen} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
