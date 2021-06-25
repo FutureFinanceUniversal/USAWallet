@@ -23,7 +23,7 @@ export const AuthButton = () => {
     <>
       {isAuthenticated ? (
         <Button
-          font-family="P22-Typewriter"
+          fontFamily="P22-Typewriter"
           boxShadow="dark-lg"
           mr={2}
           mt={-2}
@@ -34,7 +34,7 @@ export const AuthButton = () => {
       ) : (
         <>
           <Button
-            font-family="P22-Typewriter"
+            fontFamily="P22-Typewriter"
             boxShadow="dark-lg"
             mr={2}
             mt={-2}

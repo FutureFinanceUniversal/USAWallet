@@ -2,7 +2,7 @@ import { Flex, Spacer } from "@chakra-ui/react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./BottomFooter.css";
 
 library.add(fab, faCheckSquare, faCoffee);
@@ -11,7 +11,7 @@ export const BottomFooter = () => {
   return (
     <Flex justifyContent="center">
       <Spacer />
-      <FontAwesomeIcon
+      {/* <FontAwesomeIcon
         className="FAIcon"
         icon={["fab", "blogger"]}
         size="2x"
@@ -143,7 +143,7 @@ export const BottomFooter = () => {
         size="2x"
         color="lightblue"
       />
-      <Spacer />
+      <Spacer /> */}
     </Flex>
   );
 };
