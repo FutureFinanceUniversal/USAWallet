@@ -1,21 +1,18 @@
+import { Text } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Balance = () => {
-  const { authenticate, logout, isAuthenticated, Moralis } = useMoralis();
+  const { isAuthenticated, Moralis } = useMoralis();
+  const [balance, setBalance] = useState(-1);
 
   useEffect(() => {
     if (isAuthenticated) {
-      Moralis.Web3.getERC20().then(console.log);
+      Moralis.Web3.getERC20().then((balanceObject) => {
+        setBalance(balanceObject.balance);
+      });
     }
-  }, [isAuthenticated, Moralis]);
+  }, [isAuthenticated, Moralis, setBalance]);
 
-  return (
-    <div>
-      {!isAuthenticated && (
-        <button onClick={() => authenticate()}>Login</button>
-      )}
-      {isAuthenticated && <button onClick={() => logout()}>Logout</button>}
-    </div>
-  );
+  return <Text>Balance: {balance} Wei</Text>;
 };
