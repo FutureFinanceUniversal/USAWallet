@@ -1,12 +1,10 @@
+import { Avatar, Flex, Text, VStack } from "@chakra-ui/react";
 import {
-  Avatar,
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
@@ -88,26 +86,28 @@ export const TokenTable = () => {
   );
 
   return (
-    <Table variant="simple">
-      <Thead>
-        <Tr>
-          <Th>Icon</Th>
-          <Th>Name</Th>
-          <Th>Total Balance: ${portfolioValue.toFixed(2)}</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
+    <VStack>
+      <Text>Total Balance: ${portfolioValue.toFixed(2)}</Text>
+      <Accordion allowToggle>
         {displayData.map((r) => (
-          <Tr key={r.name}>
-            <Td>
-              <Avatar name={r.symbol} src={r.image} size="sm" />
-            </Td>
-            <Td>{r.name}</Td>
-            <Td>{r.valueTxt}</Td>
-          </Tr>
+          <AccordionItem key={r.name}>
+            <AccordionButton>
+              <Flex alignItems="left" justifyContent="space-between">
+                <Avatar name={r.symbol} src={r.image} size="sm" />
+                <Text ml={2}>{r.name}</Text>
+                <Text ml={2}>{r.valueTxt}</Text>
+              </Flex>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel pb={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </AccordionPanel>
+          </AccordionItem>
         ))}
-      </Tbody>
-      <Tfoot></Tfoot>
-    </Table>
+      </Accordion>
+    </VStack>
   );
 };
