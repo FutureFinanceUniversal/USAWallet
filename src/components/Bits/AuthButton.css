@@ -7,9 +7,9 @@
 }
 
 .AuthDrawer.lightBG {
-  background-image: url("../media/wallpapers/light3.svg");
+  background-image: url("../../media/wallpapers/light3.svg");
 }
 .authDrawer.darkBG {
-  background-image: url("../media/wallpapers/dark3.svg");
+  background-image: url("../../media/wallpapers/dark3.svg");
   background-position: -50vw;
 }

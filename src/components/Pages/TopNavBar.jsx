@@ -1,9 +1,9 @@
 import { Box, Flex, Image, Spacer, Text, useColorMode } from "@chakra-ui/react";
 
-import { ExpertButton } from "./ExpertButton";
-import { LightSwitch } from "./LightSwitch";
-import { AuthButton } from "./AuthButton";
-import { ProfileAvatar } from "./ProfileAvatar";
+import { ExpertButton } from "../Bits/ExpertButton";
+import { LightSwitch } from "../Bits/LightSwitch";
+import { AuthButton } from "../Bits/AuthButton";
+import { ProfileAvatar } from "../Bits/ProfileAvatar";
 import "./TopNavBar.css";
 
 import USAWalletEagleLogo from "../../media/USAWalletLogo.svg";

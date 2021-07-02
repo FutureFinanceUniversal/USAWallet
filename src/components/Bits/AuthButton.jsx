@@ -1,5 +1,5 @@
 import React from "react";
-import "../AuthButton.css";
+import "./AuthButton.css";
 import {
   Button,
   Drawer,
@@ -11,6 +11,7 @@ import {
   DrawerOverlay,
   useColorMode,
   useDisclosure,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
 import { AuthDrawer } from "./AuthDrawer";
@@ -19,29 +20,37 @@ export const AuthButton = () => {
   const { isAuthenticated, logout } = useMoralis();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
+
+  console.groupCollapsed("AuthButton");
+  console.groupEnd();
+
   return (
     <>
       {isAuthenticated ? (
-        <Button
-          fontFamily="P22-Typewriter"
-          boxShadow="dark-lg"
-          mr={2}
-          mt={-2}
-          onClick={() => logout()}
-        >
-          Log Out
-        </Button>
-      ) : (
-        <>
+        <Tooltip label="Log out of USA Wallet.">
           <Button
             fontFamily="P22-Typewriter"
             boxShadow="dark-lg"
             mr={2}
             mt={-2}
-            onClick={onOpen}
+            onClick={() => logout()}
           >
-            Log In
+            Log Out
           </Button>
+        </Tooltip>
+      ) : (
+        <>
+          <Tooltip label="Log into USA Wallet.">
+            <Button
+              fontFamily="P22-Typewriter"
+              boxShadow="dark-lg"
+              mr={2}
+              mt={-2}
+              onClick={onOpen}
+            >
+              Log In
+            </Button>
+          </Tooltip>
           <Drawer
             isOpen={isOpen}
             placement="right"
@@ -60,9 +69,11 @@ export const AuthButton = () => {
               </DrawerBody>
 
               <DrawerFooter>
-                <Button variant="outline" mr={3} onClick={onClose}>
-                  Cancel
-                </Button>
+                <Tooltip label="Cancel identity action.">
+                  <Button variant="outline" mr={3} onClick={onClose}>
+                    Cancel
+                  </Button>
+                </Tooltip>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>

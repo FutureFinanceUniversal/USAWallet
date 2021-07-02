@@ -1,5 +1,6 @@
 import { Flex, Text, VStack } from "@chakra-ui/react";
-import { TokenTable } from "./TokenTable";
+import { Swapper } from "../Blocks/Swapper";
+import { TokenTable } from "../Blocks/TokenTable";
 import React from "react";
 
 export const MainStage = () => {
@@ -7,6 +8,7 @@ export const MainStage = () => {
     <Flex justifyContent="center">
       <VStack>
         <Text>Main Stage.</Text>
+        <Swapper />
         <TokenTable />
       </VStack>
     </Flex>

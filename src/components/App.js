@@ -1,12 +1,12 @@
 import "./App.css";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
-import { TopNavBar } from "./Blocks/TopNavBar";
-import { LeftGutter } from "./Blocks/LeftGutter";
-import { MainStage } from "./Blocks/MainStage";
-import { SideShow } from "./Blocks/SideShow";
-import { RightGutter } from "./Blocks/RightGutter";
-import { BottomFooter } from "./Blocks/BottomFooter";
+import { TopNavBar } from "./Pages/TopNavBar";
+import { LeftGutter } from "./Pages/LeftGutter";
+import { MainStage } from "./Pages/MainStage";
+import { SideShow } from "./Pages/SideShow";
+import { RightGutter } from "./Pages/RightGutter";
+import { BottomFooter } from "./Pages/BottomFooter";
 
 function App() {
   const { colorMode } = useColorMode();

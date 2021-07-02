@@ -8,6 +8,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
@@ -16,8 +17,10 @@ import { AuthDrawer } from "./AuthDrawer";
 export const ProfileAvatar = () => {
   const { isAuthenticated } = useMoralis();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  console.groupCollapsed("ProfileAvatar");
+  console.groupEnd();
   return (
-    <>
+    <Tooltip label="Click to update your USA Wallet profile.">
       <Avatar boxShadow="dark-lg" mr={2} mt={-2} onClick={onOpen} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
@@ -30,12 +33,14 @@ export const ProfileAvatar = () => {
             <AuthDrawer />
           </DrawerBody>
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
+            <Tooltip label="Cancel profile update.">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+            </Tooltip>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
+    </Tooltip>
   );
 };
