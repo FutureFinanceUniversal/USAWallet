@@ -19,6 +19,7 @@ export const useTokenBalance = (props) => {
         });
     } else {
       console.debug("Unauthenticated.");
+      setBalance(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, props.symbol]);

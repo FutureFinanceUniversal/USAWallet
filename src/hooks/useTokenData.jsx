@@ -38,6 +38,22 @@ export const useTokenData = (props) => {
         });
     } else {
       console.debug("No props.tokenName given.");
+      setTokenData({
+        name: "---",
+        symbol: "---",
+        address: "0x0",
+        description: "No tokenName received to query.",
+        links: {
+          homepage: "",
+          blockchain_site: "",
+          official_forum_url: "",
+          chat_url: "",
+          announcement_url: "",
+          twitter_screen_name: "",
+        },
+        image: { thumb: "", small: "", large: "" },
+        price: 0,
+      });
     }
   }, [props.tokenName]);
 

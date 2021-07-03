@@ -29,6 +29,7 @@ export const useTokenPrice = (props) => {
         })
         .error((err) => {
           console.error(err);
+          setTokenPrice(-1);
         });
     }
   }, [props.tokenName]);

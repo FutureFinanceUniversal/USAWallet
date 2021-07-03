@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { useTransactions } from "../Hooks/useTransactions";
+import { useTransactions } from "../../hooks/useTransactions";
 
 export const TransactionList = (props) => {
   const [transactions] = useTransactions({

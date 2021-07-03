@@ -20,6 +20,7 @@ export const useTransactions = (props) => {
         });
     } else {
       console.debug("Unauthenticated.");
+      setTransactions({});
     }
   });
 

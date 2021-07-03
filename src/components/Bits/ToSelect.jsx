@@ -8,7 +8,7 @@ import {
   Select,
   Tooltip,
 } from "@chakra-ui/react";
-import { useTokenData } from "../Hooks/useTokenData";
+import { useTokenData } from "../../hooks/useTokenData";
 
 export const ToSelect = () => {
   const { polkalokrData } = useTokenData("polkalokr");

@@ -11,7 +11,7 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { usePortfolio } from "../Hooks/usePortfolio";
+import { usePortfolio } from "../../hooks/usePortfolio";
 
 export const AmountSelect = (props) => {
   const { maxSpend, setMaxSpend } = useState(0);

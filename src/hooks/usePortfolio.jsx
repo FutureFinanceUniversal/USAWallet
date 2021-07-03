@@ -44,6 +44,7 @@ export const usePortfolio = (props) => {
     } else {
       console.debug("Unauthenticated?");
       console.debug("positions.length: " + positions.length);
+      setPortfolio({ totalValue: 0, positions: [] });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, positions, tokenData]);

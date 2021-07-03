@@ -9,6 +9,7 @@ export const usePositionArray = (props) => {
   // Bring back a list of all tokens the user has
   useEffect(() => {
     let newRecord = {};
+
     if (isAuthenticated) {
       console.debug("Calling getAllERC20()...");
       Moralis.Web3.getAllERC20({ usePost: true })
@@ -28,6 +29,7 @@ export const usePositionArray = (props) => {
         });
     } else {
       console.debug("Unauthenticated user.");
+      setPositions({});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);

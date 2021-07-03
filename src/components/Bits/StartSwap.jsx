@@ -7,7 +7,7 @@ import {
   FormErrorMessage,
   Tooltip,
 } from "@chakra-ui/react";
-import { useSwap } from "../Hooks/useSwap";
+import { useSwap } from "../../hooks/useSwap";
 
 export const StartSwap = (props) => {
   const { swapTransaction } = useSwap({});

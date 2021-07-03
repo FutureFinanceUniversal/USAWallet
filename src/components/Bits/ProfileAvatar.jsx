@@ -20,8 +20,10 @@ export const ProfileAvatar = () => {
   console.groupCollapsed("ProfileAvatar");
   console.groupEnd();
   return (
-    <Tooltip label="Click to update your USA Wallet profile.">
-      <Avatar boxShadow="dark-lg" mr={2} mt={-2} onClick={onOpen} />
+    <>
+      <Tooltip label="Click to update your USA Wallet profile.">
+        <Avatar boxShadow="dark-lg" mr={2} mt={-2} onClick={onOpen} />
+      </Tooltip>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
@@ -41,6 +43,6 @@ export const ProfileAvatar = () => {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </Tooltip>
+    </>
   );
 };

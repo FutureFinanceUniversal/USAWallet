@@ -6,7 +6,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { usePortfolio } from "../Hooks/usePortfolio";
+import { usePortfolio } from "../../hooks/usePortfolio";
 import { TransactionList } from "./TransactionList";
 
 export const TokenTable = () => {
