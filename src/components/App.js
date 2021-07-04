@@ -7,9 +7,11 @@ import { MainStage } from "./Pages/MainStage";
 import { SideShow } from "./Pages/SideShow";
 import { RightGutter } from "./Pages/RightGutter";
 import { BottomFooter } from "./Pages/BottomFooter";
+import { ExpertsProvider } from "../contexts/expertsContext";
 
 function App() {
   const { colorMode } = useColorMode();
+
   return (
     <Grid
       className={`AppOuterFlex ${colorMode === "light" ? "lightBG" : "darkBG"}`}
@@ -19,24 +21,26 @@ function App() {
       templateColumns="repeat(10,1fr)"
       templateRows="repeat(10,1fr)"
     >
-      <GridItem colSpan={10}>
-        <TopNavBar />
-      </GridItem>
-      <GridItem rowSpan={8} colSpan={1}>
-        <LeftGutter />
-      </GridItem>
-      <GridItem rowSpan={8} colSpan={5} borderWidth={1} borderRadius="lg">
-        <MainStage />
-      </GridItem>
-      <GridItem rowSpan={8} colSpan={3} borderWidth={1} borderRadius="lg">
-        <SideShow />
-      </GridItem>
-      <GridItem rowSpan={8} colSpan={1}>
-        <RightGutter />
-      </GridItem>
-      <GridItem colSpan={10}>
-        <BottomFooter />
-      </GridItem>
+      <ExpertsProvider>
+        <GridItem colSpan={10}>
+          <TopNavBar />
+        </GridItem>
+        <GridItem rowSpan={8} colSpan={1}>
+          <LeftGutter />
+        </GridItem>
+        <GridItem rowSpan={8} colSpan={5} borderWidth={1} borderRadius="lg">
+          <MainStage />
+        </GridItem>
+        <GridItem rowSpan={8} colSpan={3} borderWidth={1} borderRadius="lg">
+          <SideShow />
+        </GridItem>
+        <GridItem rowSpan={8} colSpan={1}>
+          <RightGutter />
+        </GridItem>
+        <GridItem colSpan={10}>
+          <BottomFooter />
+        </GridItem>
+      </ExpertsProvider>
     </Grid>
   );
 }

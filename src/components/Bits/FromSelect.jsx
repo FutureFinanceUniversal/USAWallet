@@ -8,10 +8,10 @@ import {
   Select,
   Tooltip,
 } from "@chakra-ui/react";
-import { usePortfolio } from "../../hooks/usePortfolio";
+import { usePortfolio } from "../../contexts/portfolioContext";
 
 export const FromSelect = (props) => {
-  const { portfolio } = usePortfolio();
+  const portfolio = usePortfolio();
 
   console.groupCollapsed("FromSelect");
   console.debug("Received portfolio: ", portfolio);

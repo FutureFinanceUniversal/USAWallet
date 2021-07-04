@@ -6,10 +6,10 @@ import { AuthButton } from "../Bits/AuthButton";
 import { ProfileAvatar } from "../Bits/ProfileAvatar";
 import "./TopNavBar.css";
 
-import USAWalletEagleLogo from "../../media/USAWalletLogo.svg";
+import USAWalletEagleLogo from "../../media/logos/USAWalletLogo.svg";
 
-export const TopNavBar = () => {
-  const { colorMode } = useColorMode();
+export const TopNavBar = (props) => {
+  const colorMode = useColorMode();
   return (
     <Flex
       className="HeaderOuterFlex"

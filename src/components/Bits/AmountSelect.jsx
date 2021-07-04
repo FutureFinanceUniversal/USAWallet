@@ -11,12 +11,12 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { usePortfolio } from "../../hooks/usePortfolio";
+import { usePortfolio } from "../../contexts/portfolioContext";
 
 export const AmountSelect = (props) => {
-  const { maxSpend, setMaxSpend } = useState(0);
-  const { decimals, setDecimals } = useState(18);
-  const { portfolio } = usePortfolio();
+  const [maxSpend, setMaxSpend] = useState(0);
+  const [decimals, setDecimals] = useState(18);
+  const portfolio = usePortfolio();
 
   useEffect(() => {
     let position = {};

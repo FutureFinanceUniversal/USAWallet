@@ -3,7 +3,7 @@ import { useMoralis } from "react-moralis";
 
 export const useTransactions = (props) => {
   const { isAuthenticated, Moralis } = useMoralis();
-  const { transactions, setTransactions } = useState();
+  const [transactions, setTransactions] = useState();
 
   console.groupCollapsed("useTransactions");
 

@@ -6,17 +6,18 @@ import {
   FormHelperText,
   FormErrorMessage,
   Select,
+  Text,
   Tooltip,
 } from "@chakra-ui/react";
 import { useTokenData } from "../../hooks/useTokenData";
 
 export const ToSelect = () => {
-  const { polkalokrData } = useTokenData("polkalokr");
-  const { superfarmData } = useTokenData("superfarm");
-  const { polkadexData } = useTokenData("polkadex");
-  const { dafiData } = useTokenData("dafi-protocol");
-  const { uniswapData } = useTokenData("uniswap");
-  const { chainlinkData } = useTokenData("chainlink");
+  const polkalokrData = useTokenData("polkalokr");
+  const superfarmData = useTokenData("superfarm");
+  const polkadexData = useTokenData("polkadex");
+  const dafiData = useTokenData("dafi-protocol");
+  const uniswapData = useTokenData("uniswap");
+  const chainlinkData = useTokenData("chainlink");
   const offeringData = [
     polkalokrData,
     superfarmData,
@@ -36,18 +37,22 @@ export const ToSelect = () => {
         <FormLabel>To Token</FormLabel>
         <Select placeholder="Select option">
           {offeringData.map((token) => {
-            return (
-              <Tooltip label={token.description.en}>
-                <option value={token.symbol}>
-                  <Avatar
-                    name={token.symbol}
-                    src={token.image.thumb}
-                    size="sm"
-                  />
-                  {token.name} @ ${token.price}/{token.symbol}
-                </option>
-              </Tooltip>
-            );
+            if (token) {
+              return (
+                <Tooltip label={token.description.en}>
+                  <option value={token.symbol}>
+                    <Avatar
+                      name={token.symbol}
+                      src={token.image.thumb}
+                      size="sm"
+                    />
+                    {token.name} @ ${token.price}/{token.symbol}
+                  </option>
+                </Tooltip>
+              );
+            } else {
+              return <Text>Empty Portfolio.</Text>;
+            }
           })}
         </Select>
         <FormHelperText>Select token flavor to receive.</FormHelperText>

@@ -44,9 +44,9 @@ export const AuthDrawer = (props) => {
 
   const handleAuthenticate = () => {
     console.groupCollapsed("handleAuthenticate");
-    authenticate({ usePost: true })
-      .then(console.debug("Moralis.authenticate() successful."))
-      .error((err) => console.error(err));
+    authenticate({ usePost: true }).then(
+      console.debug("Moralis.authenticate() successful.")
+    );
     console.groupEnd();
   };
 

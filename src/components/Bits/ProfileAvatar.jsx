@@ -15,7 +15,7 @@ import { useMoralis } from "react-moralis";
 import { AuthDrawer } from "./AuthDrawer";
 
 export const ProfileAvatar = () => {
-  const { isAuthenticated } = useMoralis();
+  const isAuthenticated = useMoralis();
   const { isOpen, onOpen, onClose } = useDisclosure();
   console.groupCollapsed("ProfileAvatar");
   console.groupEnd();

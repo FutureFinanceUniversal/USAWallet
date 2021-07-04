@@ -1,9 +1,16 @@
+import { Avatar, HStack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { use1InchTokenList } from "./use1InchTokenList";
 
-const oneInchTail = "https://api.coingecko.com/api/v3/coins/";
+const oneInchEndpoint = "https://api.1inch.exchange/v3.0/1/quote?";
 
 export const useSwap = (props) => {
-  const { transaction, setTransaction } = useState({});
+  const [transaction, setTransaction] = useState({});
+  const { fromTokenData } = use1InchTokenList({
+    tokenSymbol: props.fromSymbol,
+  });
+  const { toTokenData } = use1InchTokenList({ tokenSymbol: props.toSymbol });
+
   console.groupCollapsed("useSwap");
 
   console.groupEnd();
@@ -23,7 +30,49 @@ export const useSwap = (props) => {
           return;
         } else {
           console.debug("Received swapAmount: ", props.swapAmount);
-          // do something 1-inchy here.
+          let oneInchUrl = [
+            oneInchEndpoint +
+              "fromTokenAddress=" +
+              fromTokenData.address +
+              "&toTokenAddress=" +
+              toTokenData.address +
+              "&amount=" +
+              props.amount,
+          ];
+          fetch(oneInchUrl, {
+            method: "GET",
+            mode: "cors",
+            headers: { "Access-Control-Allow-Origin": true },
+          })
+            .then((response) => response.json())
+            .then((oneInchData) => {
+              oneInchData = JSON.parse(oneInchData);
+              console.debug("Received oneInchData: ", oneInchData);
+              setTransaction(
+                <HStack>
+                  <Avatar src={oneInchData.fromToken.logoURI} size="md" />
+                  <Text>
+                    {(
+                      oneInchData.fromTokenAmount /
+                      10 ** oneInchData.fromToken.decimals
+                    ).toPrecision(3)}
+                    {oneInchData.fromToken.symbol}
+                    buys
+                  </Text>
+                  <Avatar src={oneInchData.toToken.logoURI} size="md" />
+                  <Text>
+                    {oneInchData.toTokenAmount /
+                      10 ** oneInchData.fromToken.decimals}
+                    .toPrecision(3)
+                    {oneInchData.toToken.symbol}
+                    for {oneInchData.estimatedGas} gas.
+                  </Text>
+                </HStack>
+              );
+            })
+            .error((err) => {
+              console.error(err);
+            });
           return;
         }
       }

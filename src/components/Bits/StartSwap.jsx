@@ -10,7 +10,7 @@ import {
 import { useSwap } from "../../hooks/useSwap";
 
 export const StartSwap = (props) => {
-  const { swapTransaction } = useSwap({});
+  const swapTransaction = useSwap({});
   console.groupCollapsed("StartSwap");
   console.debug("Received fromSymbol: ", props.fromSymbol);
   console.debug("Received toSymbol: ", props.toSymbol);

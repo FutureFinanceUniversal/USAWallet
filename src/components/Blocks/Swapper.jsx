@@ -6,9 +6,9 @@ import { AmountSelect } from "../Bits/AmountSelect";
 import { StartSwap } from "../Bits/StartSwap";
 
 export const Swapper = () => {
-  const { fromSymbol, setFromSymbol } = useState("");
-  const { toSymbol, setToSymbol } = useState("");
-  const { swapAmount, setSwapAmount } = useState(0);
+  const [fromSymbol, setFromSymbol] = useState("");
+  const [toSymbol, setToSymbol] = useState("");
+  const [swapAmount, setSwapAmount] = useState(0);
 
   console.groupCollapsed("Swapper");
   console.debug("fromSymbol: ", fromSymbol);

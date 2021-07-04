@@ -1,7 +1,8 @@
-@import "../fonts/unibomber.css";
+/* @import "../fonts/unibomber.css"; */
 @import "../fonts/logofont.css";
 * {
-  fontfamily: P22-Typewriter;
+  /* font-family: P22-Typewriter; */
+  font-family: LogoFont;
 }
 
 .AppOuterFlex {

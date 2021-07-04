@@ -19,9 +19,9 @@ export const useTokenData = (props) => {
         .then((response) => response.json())
         .then((geckoData) => {
           console.debug(
-            "geckoData about contract for '" + props.tokenName + "':"
+            "geckoData about contract for '" + props.tokenName + "':",
+            geckoData
           );
-          console.debug(geckoData);
           myObj = JSON.parse(geckoData);
           setTokenData({
             name: myObj.name,

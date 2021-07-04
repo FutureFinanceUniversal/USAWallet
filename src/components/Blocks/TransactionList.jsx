@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { useTransactions } from "../../hooks/useTransactions";
 
 export const TransactionList = (props) => {
-  const [transactions] = useTransactions({
+  const transactions = useTransactions({
     tokenName: props.tokenName,
     tokenSymbol: props.tokenSymbol,
   });
