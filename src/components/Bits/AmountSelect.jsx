@@ -26,9 +26,9 @@ export const AmountSelect = (props) => {
           (position) =>
             position.symbol.toUpperCase() === props.fromSymbol.toUpperCase()
         );
-        console.debug("Identified from position: ", position);
-        setMaxSpend(position.tokens);
-        setDecimals(position.decimals);
+        console.log("Identified from position: ", position);
+        setMaxSpend(position ? position.tokens : 0);
+        setDecimals(position ? position.decimals : 0);
       } else {
         console.error("No fromSymbol received.");
       }
@@ -38,8 +38,8 @@ export const AmountSelect = (props) => {
   }, [positions, props.fromSymbol, waiting]);
 
   console.groupCollapsed("AmountSelect");
-  console.debug("Received portfolio: ", positions);
-  console.debug("Received fromSymbol: ", props.fromSymbol);
+  console.log("Received portfolio: ", positions);
+  console.log("Received fromSymbol: ", props.fromSymbol);
 
   console.groupEnd();
   return (

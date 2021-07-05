@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Spacer, Text } from "@chakra-ui/react";
+import { VStack, Text } from "@chakra-ui/react";
 import { FromSelect } from "../Bits/FromSelect";
 import { ToSelect } from "../Bits/ToSelect";
 import { AmountSelect } from "../Bits/AmountSelect";
@@ -17,19 +17,16 @@ export const Swapper = () => {
   console.groupEnd();
 
   return (
-    <Flex flex-direction="column" alignItems="center" justifyContent="center">
+    <VStack alignItems="center" justifyContent="center">
       <Text>Swap Tokens</Text>
       <FromSelect setFromSymbol={setFromSymbol} />
-      <Spacer />
       <ToSelect setToSymbol={setToSymbol} />
-      <Spacer />
       <AmountSelect fromSymbol={fromSymbol} setSwapAmount={setSwapAmount} />
-      <Spacer />
       <StartSwap
         fromSymbol={fromSymbol}
         toSymbol={toSymbol}
         swapAmount={swapAmount}
       />
-    </Flex>
+    </VStack>
   );
 };
