@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { usePositionArray } from "../hooks/usePositionArray";
 
 const PositionsContext = React.createContext();
@@ -8,17 +8,15 @@ export function usePositions() {
 }
 
 export const PositionsProvider = (props) => {
-  // "helper component"
-  const positions = usePositionArray();
+  const { positions, totalValue } = useState(usePositionArray());
 
   console.groupCollapsed("PositionsProvider");
-  // Bring back a list of all tokens the user has
-
   console.log("Providing positions array: ", positions);
+  console.log("Providing total value: $" + totalValue);
   console.groupEnd();
 
   return (
-    <PositionsContext.Provider value={positions}>
+    <PositionsContext.Provider value={{ positions, totalValue }}>
       {props.children}
     </PositionsContext.Provider>
   );

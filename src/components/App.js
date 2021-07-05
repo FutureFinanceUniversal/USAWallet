@@ -7,6 +7,7 @@ import { MainStage } from "./Pages/MainStage";
 import { SideShow } from "./Pages/SideShow";
 import { RightGutter } from "./Pages/RightGutter";
 import { BottomFooter } from "./Pages/BottomFooter";
+
 import { ExpertsProvider } from "../contexts/expertsContext";
 
 function App() {
@@ -34,13 +35,13 @@ function App() {
         <GridItem rowSpan={8} colSpan={3} borderWidth={1} borderRadius="lg">
           <SideShow />
         </GridItem>
-        <GridItem rowSpan={8} colSpan={1}>
-          <RightGutter />
-        </GridItem>
-        <GridItem colSpan={10}>
-          <BottomFooter />
-        </GridItem>
       </ExpertsProvider>
+      <GridItem rowSpan={8} colSpan={1}>
+        <RightGutter />
+      </GridItem>
+      <GridItem colSpan={10}>
+        <BottomFooter />
+      </GridItem>
     </Grid>
   );
 }

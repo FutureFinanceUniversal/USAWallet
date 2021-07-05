@@ -6,40 +6,42 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { usePositions } from "../../contexts/positionsContext";
-// import { TransactionList } from "./TransactionList";
+import { usePositions } from "../../hooks/usePositions";
 
 export const TokenTable = () => {
-  const { portfolio } = usePositions();
+  const { positions, waiting } = usePositions();
 
   console.groupCollapsed("TokenTable");
-  console.debug("Received portfolio: ", portfolio);
+  console.log(
+    waiting ? "Waiting for data." : "Received positions: ",
+    positions
+  );
   console.groupEnd();
 
   return (
     <VStack>
-      {/* <Text>Total Balance: ${portfolio.totalValue.toFixed(2)}</Text> */}
+      {/* {!waiting && <Text>Total Value: ${totalValue}</Text>} */}
       <Accordion allowToggle>
-        {portfolio !== undefined &&
-          portfolio.positions.map((position) => (
+        {!waiting &&
+          positions.map((position) => (
             <AccordionItem key={position.name}>
               <AccordionButton>
                 <Flex alignItems="left" justifyContent="space-between">
                   <Avatar
                     name={position.symbol}
-                    src={position.image.thumb}
+                    src={position.image}
                     size="sm"
                   />
                   <Text ml={2}>{position.name}</Text>
-                  <Text ml={2}>{position.valueString}</Text>
+                  <Text ml={2}>
+                    {position.balance / 10 ** position.decimals}
+                  </Text>
+                  {/* <Text ml={2}>{position.valueString}</Text> */}
                 </Flex>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={4}>
-                {/* <TransactionList
-                tokenName={position.name}
-                symbol={position.symbol}
-              /> */}
+                {/* <Text>{position.description}</Text> */}
               </AccordionPanel>
             </AccordionItem>
           ))}

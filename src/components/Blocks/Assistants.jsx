@@ -8,7 +8,7 @@ import { useExperts } from "../../contexts/expertsContext";
 export const Assistants = () => {
   const [mode, switchMode] = useState("UniSwap");
   const [dialog, setDialog] = useState(
-    "Welcome to USA Wallet, the American way to crypto!"
+    "Welcome to USA Wallet.  Simple, Safe, Secure."
   );
   const { expertsOn } = useExperts();
 
@@ -17,12 +17,17 @@ export const Assistants = () => {
     switch (mode) {
       case "UniSwap":
         switchMode("PayPal");
+        setDialog(
+          '"Ask not what your fiat can do for you.  Ask what crypto can you purchase!"'
+        );
         break;
       case "PayPal":
         switchMode("MetaMask");
+        setDialog('"Find freedom with MetaMask."');
         break;
       case "MetaMask":
         switchMode("UniSwap");
+        setDialog('"A token saved is a token earning."');
         break;
       default:
         switchMode("UniSwap");
@@ -30,7 +35,7 @@ export const Assistants = () => {
     console.groupEnd();
   };
 
-  if (expertsOn) {
+  if (expertsOn === true) {
     return (
       <Flex direction="column">
         <Spacer />

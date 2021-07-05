@@ -11,18 +11,18 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { usePortfolio } from "../../contexts/portfolioContext";
+import { usePositions } from "../../hooks/usePositions";
 
 export const AmountSelect = (props) => {
   const [maxSpend, setMaxSpend] = useState(0);
   const [decimals, setDecimals] = useState(18);
-  const portfolio = usePortfolio();
+  const { positions, waiting } = usePositions();
 
   useEffect(() => {
     let position = {};
-    if (portfolio) {
+    if (!waiting) {
       if (props.fromSymbol) {
-        position = portfolio.positions.find(
+        position = positions.find(
           (position) =>
             position.symbol.toUpperCase() === props.fromSymbol.toUpperCase()
         );
@@ -35,10 +35,10 @@ export const AmountSelect = (props) => {
     } else {
       console.error("No portfolio received.");
     }
-  });
+  }, [positions, props.fromSymbol, waiting]);
 
   console.groupCollapsed("AmountSelect");
-  console.debug("Received portfolio: ", portfolio);
+  console.debug("Received portfolio: ", positions);
   console.debug("Received fromSymbol: ", props.fromSymbol);
 
   console.groupEnd();
@@ -50,7 +50,9 @@ export const AmountSelect = (props) => {
           enable={props.fromToken ? true : false}
           max={maxSpend}
           min={0}
-          onChange={props.setSwapAmount(this.value * 10 ** decimals)}
+          onChange={(valueString) =>
+            props.setSwapAmount(valueString * 10 ** decimals)
+          }
         >
           <NumberInputField />
           <NumberInputStepper>

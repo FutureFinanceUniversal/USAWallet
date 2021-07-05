@@ -7,10 +7,10 @@ import {
   FormErrorMessage,
   Tooltip,
 } from "@chakra-ui/react";
-import { useSwap } from "../../hooks/useSwap";
+// import { useSwap } from "../../hooks/useSwap";
 
 export const StartSwap = (props) => {
-  const swapTransaction = useSwap({});
+  // const swapTransaction = useSwap({});
   console.groupCollapsed("StartSwap");
   console.debug("Received fromSymbol: ", props.fromSymbol);
   console.debug("Received toSymbol: ", props.toSymbol);
@@ -23,11 +23,11 @@ export const StartSwap = (props) => {
         <Tooltip label="Get quote for the current toke swap selections.">
           <Button
             enabled={props.swapAmount > 0}
-            onClick={swapTransaction({
-              fromSymbol: props.fromSymbol,
-              toSymbol: props.toSymbol,
-              swapAmount: props.swapAmount,
-            })}
+            // onClick={swapTransaction({
+            //   fromSymbol: props.fromSymbol,
+            //   toSymbol: props.toSymbol,
+            //   swapAmount: props.swapAmount,
+            // })}
           >
             Preview Swap Order
           </Button>

@@ -1,6 +1,5 @@
 import { Flex, Text, VStack } from "@chakra-ui/react";
-import { PositionsProvider } from "../../contexts/positionsContext";
-// import { Swapper } from "../Blocks/Swapper";
+import { Swapper } from "../Blocks/Swapper";
 import { useMoralis } from "react-moralis";
 import { TokenTable } from "../Blocks/TokenTable";
 import React from "react";
@@ -17,10 +16,8 @@ export const MainStage = () => {
         {isAuthenticated ? (
           <>
             <Text> Authenticated. </Text>
-            <PositionsProvider>
-              {/* <Swapper /> */}
-              <TokenTable />
-            </PositionsProvider>
+            <Swapper />
+            <TokenTable />
           </>
         ) : (
           <Text> Unauthenticated. </Text>

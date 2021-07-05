@@ -36,24 +36,21 @@ export const ToSelect = () => {
       <FormControl id="swapto" isRequired>
         <FormLabel>To Token</FormLabel>
         <Select placeholder="Select option">
-          {offeringData.map((token) => {
-            if (token) {
-              return (
-                <Tooltip label={token.description.en}>
-                  <option value={token.symbol}>
-                    <Avatar
-                      name={token.symbol}
-                      src={token.image.thumb}
-                      size="sm"
-                    />
-                    {token.name} @ ${token.price}/{token.symbol}
-                  </option>
-                </Tooltip>
-              );
-            } else {
-              return <Text>Empty Portfolio.</Text>;
-            }
-          })}
+          {offeringData &&
+            offeringData.map((token) => {
+              if (token) {
+                return (
+                  <Tooltip label={token.description}>
+                    <option value={token.symbol}>
+                      <Avatar name={token.symbol} src={token.image} size="sm" />
+                      {token.name} @ ${token.price}/{token.symbol}
+                    </option>
+                  </Tooltip>
+                );
+              } else {
+                return <Text>Empty Portfolio.</Text>;
+              }
+            })}
         </Select>
         <FormHelperText>Select token flavor to receive.</FormHelperText>
         <FormErrorMessage>
