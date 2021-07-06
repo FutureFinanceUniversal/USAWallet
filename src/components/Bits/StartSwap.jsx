@@ -2,8 +2,6 @@ import {
   Box,
   Button,
   FormControl,
-  FormLabel,
-  FormHelperText,
   FormErrorMessage,
   Tooltip,
 } from "@chakra-ui/react";
@@ -19,7 +17,6 @@ export const StartSwap = (props) => {
   return (
     <Box>
       <FormControl id="swapstart">
-        <FormLabel>Begin Swap</FormLabel>
         <Tooltip label="Get quote for the current toke swap selections.">
           <Button
             enabled={props.swapAmount > 0}
@@ -32,7 +29,6 @@ export const StartSwap = (props) => {
             Preview Swap Order
           </Button>
         </Tooltip>
-        <FormHelperText>Press here to begin swap.</FormHelperText>
         <FormErrorMessage>Well shoot.</FormErrorMessage>
       </FormControl>
     </Box>

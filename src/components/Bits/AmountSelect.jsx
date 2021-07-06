@@ -1,8 +1,6 @@
 import {
   Box,
   FormControl,
-  FormLabel,
-  FormHelperText,
   FormErrorMessage,
   NumberInput,
   NumberInputField,
@@ -45,7 +43,6 @@ export const AmountSelect = (props) => {
   return (
     <Box>
       <FormControl id="swapamount" isRequired>
-        <FormLabel>Ammount</FormLabel>
         <NumberInput
           enable={props.fromToken ? true : false}
           max={maxSpend}
@@ -60,7 +57,6 @@ export const AmountSelect = (props) => {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <FormHelperText>Select how many tokens to offer.</FormHelperText>
         <FormErrorMessage>Please select an available amount.</FormErrorMessage>
       </FormControl>
     </Box>

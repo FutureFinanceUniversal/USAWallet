@@ -9,24 +9,28 @@ import {
 import { usePositions } from "../../hooks/usePositions";
 
 export const TokenTable = () => {
-  const { positions, waiting } = usePositions();
+  const { portfolio, waiting, totalValue } = usePositions();
 
   console.groupCollapsed("TokenTable");
   console.log(
-    waiting ? "Waiting for data." : "Received positions: ",
-    positions
+    waiting ? "Waiting for data." : "Received portfolio: ",
+    portfolio
   );
   console.groupEnd();
 
   return (
-    <VStack>
-      {/* {!waiting && <Text>Total Value: ${totalValue}</Text>} */}
-      <Accordion allowToggle>
+    <VStack borderWidth={2} borderRadius={10} width="100%" padding={5}>
+      {!waiting && <Text>Total Value: ${totalValue}</Text>}
+      <Accordion allowToggle width="100%">
         {!waiting &&
-          positions.map((position) => (
-            <AccordionItem key={position.name}>
+          portfolio.map((position) => (
+            <AccordionItem key={position.name} width="100%">
               <AccordionButton>
-                <Flex alignItems="left" justifyContent="space-between">
+                <Flex
+                  width="100%"
+                  alignItems="left"
+                  justifyContent="space-between"
+                >
                   <Avatar
                     name={position.symbol}
                     src={position.image}
@@ -34,7 +38,13 @@ export const TokenTable = () => {
                   />
                   <Text ml={2}>{position.name}</Text>
                   <Text ml={2}>
-                    {position.balance / 10 ** position.decimals}
+                    {position &&
+                      parseFloat(position.balance).toPrecision(3) /
+                        10 ** position.decimals}{" "}
+                    @ $16.23/{position.symbol} = $
+                    {parseFloat(
+                      (position.balance / 10 ** position.decimals) * 16.23
+                    ).toFixed(2)}
                   </Text>
                   {/* <Text ml={2}>{position.valueString}</Text> */}
                 </Flex>

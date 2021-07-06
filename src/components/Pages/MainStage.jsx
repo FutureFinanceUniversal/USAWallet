@@ -1,5 +1,5 @@
 import { Flex, Text, VStack } from "@chakra-ui/react";
-import { Swapper } from "../Blocks/Swapper";
+// import { Swapper } from "../Blocks/Swapper";
 import { useMoralis } from "react-moralis";
 import { TokenTable } from "../Blocks/TokenTable";
 import React from "react";
@@ -11,12 +11,14 @@ export const MainStage = () => {
 
   return (
     <Flex justifyContent="center">
-      <VStack>
-        <Text>Main Stage.</Text>
+      <VStack spacing={5}>
+        <Text>
+          ----------<i>Main Stage</i>----------
+        </Text>
         {isAuthenticated ? (
           <>
             <Text> Authenticated. </Text>
-            <Swapper />
+            {/* <Swapper /> */}
             <TokenTable />
           </>
         ) : (

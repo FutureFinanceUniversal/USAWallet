@@ -2,8 +2,6 @@ import {
   Avatar,
   Box,
   FormControl,
-  FormLabel,
-  FormHelperText,
   FormErrorMessage,
   Select,
   Tooltip,
@@ -22,10 +20,9 @@ export const FromSelect = (props) => {
   console.groupEnd();
 
   return (
-    <Box>
+    <Box width="100%">
       <FormControl id="swapfrom" isRequired>
-        <FormLabel>From Token</FormLabel>
-        <Select id="fromToken" placeholder="Select a token.">
+        <Select id="fromToken" placeholder="Select a token to trade from.">
           {!waiting &&
             positions.map((position) => {
               return (
@@ -46,7 +43,6 @@ export const FromSelect = (props) => {
               );
             })}
         </Select>
-        <FormHelperText>Select token flavor to give.</FormHelperText>
         <FormErrorMessage>
           Please select from the tokens in your portfolio.
         </FormErrorMessage>

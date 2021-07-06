@@ -6,7 +6,7 @@ const geckoHead =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=";
 const geckoTail = "&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
-export const usePositions = () => {
+export const useOptimized = () => {
   const { isAuthenticated, Moralis } = useMoralis();
   const [positions, setPositions] = useState(emptyList);
   const [totalValue, setTotalValue] = useState(0);

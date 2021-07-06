@@ -1,9 +1,7 @@
 import {
   Avatar,
-  Box,
   FormControl,
-  FormLabel,
-  FormHelperText,
+  Flex,
   FormErrorMessage,
   Select,
   Text,
@@ -32,10 +30,9 @@ export const ToSelect = () => {
   console.groupEnd();
 
   return (
-    <Box>
+    <Flex width="100%">
       <FormControl id="swapto" isRequired>
-        <FormLabel>To Token</FormLabel>
-        <Select placeholder="Select option">
+        <Select placeholder="Select a token to receive.">
           {offeringData &&
             offeringData.map((token) => {
               if (token) {
@@ -52,11 +49,10 @@ export const ToSelect = () => {
               }
             })}
         </Select>
-        <FormHelperText>Select token flavor to receive.</FormHelperText>
         <FormErrorMessage>
           Please select from the given list of input tokens.
         </FormErrorMessage>
       </FormControl>
-    </Box>
+    </Flex>
   );
 };
