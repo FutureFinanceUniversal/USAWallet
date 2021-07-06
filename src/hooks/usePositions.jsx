@@ -14,7 +14,9 @@ export const usePositions = () => {
 
   console.groupCollapsed("usePositions");
   console.log("calling Moralis.web3.getAllERC20()...");
-  const tokens = Moralis.Web3.getAllERC20();
+  const tokens = Moralis.Web3.getAllERC20().then((response) => {
+    console.log("Receved Moralis response: ", response);
+  });
 
   useEffect(() => {
     console.log("Triggered on change to token data:", tokens);
