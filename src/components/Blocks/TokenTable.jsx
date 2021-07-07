@@ -9,21 +9,17 @@ import {
 import { usePositions } from "../../hooks/usePositions";
 
 export const TokenTable = () => {
-  const { portfolio, waiting, totalValue } = usePositions();
+  const { positions, isLoading, totalValue } = usePositions();
 
   console.groupCollapsed("TokenTable");
-  console.log(
-    waiting ? "Waiting for data." : "Received portfolio: ",
-    portfolio
-  );
-  console.groupEnd();
+  console.log(!isLoading && positions);
 
   return (
     <VStack borderWidth={2} borderRadius={10} width="100%" padding={5}>
-      {!waiting && <Text>Total Value: ${totalValue}</Text>}
+      {!isLoading && <Text>Total Value: ${totalValue}</Text>}
       <Accordion allowToggle width="100%">
-        {!waiting &&
-          portfolio.map((position) => (
+        {!isLoading &&
+          positions.map((position) => (
             <AccordionItem key={position.name} width="100%">
               <AccordionButton>
                 <Flex
@@ -37,21 +33,12 @@ export const TokenTable = () => {
                     size="sm"
                   />
                   <Text ml={2}>{position.name}</Text>
-                  <Text ml={2}>
-                    {position &&
-                      parseFloat(position.balance).toPrecision(3) /
-                        10 ** position.decimals}{" "}
-                    @ $16.23/{position.symbol} = $
-                    {parseFloat(
-                      (position.balance / 10 ** position.decimals) * 16.23
-                    ).toFixed(2)}
-                  </Text>
-                  {/* <Text ml={2}>{position.valueString}</Text> */}
+                  <Text ml={2}>{position.valueString}</Text>
                 </Flex>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={4}>
-                {/* <Text>{position.description}</Text> */}
+                <Text>Transaction list should go here.</Text>
               </AccordionPanel>
             </AccordionItem>
           ))}

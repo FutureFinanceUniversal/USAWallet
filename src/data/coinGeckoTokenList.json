@@ -10109,12 +10109,6 @@
       "symbol": "uaxie",
       "name": "Unicly Mystic Axies Collection"
     },
-    "uni": { "id": "universe-token", "symbol": "uni", "name": "UNIVERSE Token" },
-    "unicrap": {
-      "id": "unicrap",
-      "symbol": "unicrap",
-      "name": "UniCrapToken.xyz"
-    },
     "unc": { "id": "unicrypt", "symbol": "unc", "name": "UniCrypt (Old)" },
     "uncx": { "id": "unicrypt-2", "symbol": "uncx", "name": "UniCrypt" },
     "unidx": { "id": "unidex", "symbol": "unidx", "name": "UniDex" },
@@ -10167,6 +10161,7 @@
     "uco": { "id": "uniris", "symbol": "uco", "name": "Uniris" },
     "socks": { "id": "unisocks", "symbol": "socks", "name": "Unisocks" },
     "unistake": { "id": "unistake", "symbol": "unistake", "name": "Unistake" },
+    "uniswap": {"id": "uniswap", "symbol": "uni", "name":"Uniswap"},
     "usd": {
       "id": "uniswap-state-dollar",
       "symbol": "usd",

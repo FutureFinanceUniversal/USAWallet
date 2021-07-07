@@ -6,24 +6,26 @@ const geckoHead =
   "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=";
 const geckoTail = "&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
-export const useOptimized = () => {
+export const usePositions = () => {
   const { isAuthenticated, Moralis } = useMoralis();
   const [positions, setPositions] = useState(emptyList);
   const [totalValue, setTotalValue] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  // const [allPositions, setAllPositions] = useState(emptyList);
 
   useEffect(() => {
     if (isAuthenticated) {
       // Bring back a list of all tokens the user has
       console.log("Calling getAllERC20()...");
-      Moralis.Web3.getAllERC20().then((allPositions) => {
+      Moralis.Web3.getAllERC20({ chain: "bsc" }).then((allPositions) => {
         console.log("All position data:", allPositions);
         const ids = allPositions
           .map((token) => coinGeckoList[token.symbol.toLowerCase()]?.id)
           .filter((id) => Boolean(id))
           .join(",");
         const url = `${geckoHead}?vs_currency=usd&ids=${ids}` + geckoTail;
-
+        console.log(url);
+        // setAllPositions(allPositions);
         // Call CoinGecko API:
         fetch(url)
           .then((response) => response.json())
@@ -41,32 +43,31 @@ export const useOptimized = () => {
               output.price = tokenData?.current_price;
               output.value = output.price ? token.balance * output.price : 0;
               runningTotal += output.value;
-              output.valueString = [
-                parseFloat(output.tokens).toPrecision(3) +
-                  " @ $" +
-                  parseFloat(tokenData?.current_price).toFixed(2) +
-                  "/" +
-                  output.symbol.toUpperCase() +
-                  " = $" +
-                  parseFloat(output.value).toFixed(2),
-              ];
+              //   output.valueString = [
+              //     parseFloat(output.tokens).toPrecision(3) +
+              //       " @ $" +
+              //       parseFloat(tokenData?.current_price).toFixed(2) +
+              //       "/" +
+              //       output.symbol +
+              //       " = $" +
+              //       parseFloat(output.value).toFixed(2),
+              //   ];
               return output;
             });
             setPositions(newList);
             setTotalValue(runningTotal);
+            setIsLoading(false);
+            // console.log("Returning positions: ", positions);
+            // console.log("Returning isLoading:", isLoading);
+            // console.log("totalValue:", totalValue);
           });
       });
     } else {
-      console.log("Unauthenticated.  Returning: ", emptyList);
+      // console.log("Unauthenticated.  Returning: ", emptyList);
       setPositions(emptyList);
       setIsLoading(true);
     }
-    setIsLoading(false);
   }, [Moralis.Web3, isAuthenticated]);
-
-  console.log("Returning positions: ", positions);
-  console.log("Returning isLoading:", isLoading);
-  console.log("totalValue:", totalValue);
 
   return { positions, isLoading, totalValue };
 };
