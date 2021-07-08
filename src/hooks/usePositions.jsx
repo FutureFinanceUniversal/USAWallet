@@ -20,7 +20,11 @@ export const usePositions = () => {
       Moralis.Web3.getAllERC20().then((allPositions) => {
         console.log("All position data:", allPositions);
         const ids = allPositions
-          .map((token) => coinGeckoList[token.symbol.toLowerCase()]?.id)
+          .map((token) =>
+            token.name.toLowerCase() === "ether"
+              ? coinGeckoList["ethereum"].id
+              : coinGeckoList[token.name.toLowerCase()]?.id
+          )
           .filter((id) => Boolean(id))
           .join(",");
         const url = `${geckoHead}?vs_currency=usd&ids=${ids}` + geckoTail;
