@@ -7,6 +7,8 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { usePositions } from "../../hooks/usePositions";
+import { TransactionList } from "./TransactionList";
+import { TokenShiftList } from "./TokenShiftList";
 
 export const TokenTable = () => {
   const { positions, isLoading, totalValue } = usePositions();
@@ -16,7 +18,9 @@ export const TokenTable = () => {
 
   return (
     <VStack borderWidth={2} borderRadius={10} width="100%" padding={5}>
-      {!isLoading && <Text>Total Value: ${totalValue}</Text>}
+      {!isLoading && (
+        <Text>Total Value: ${parseFloat(totalValue).toFixed(2)}</Text>
+      )}
       <Accordion allowToggle width="100%">
         {!isLoading &&
           positions.map((position) => (
@@ -38,7 +42,11 @@ export const TokenTable = () => {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={4}>
-                <Text>Transaction list should go here.</Text>
+                {position.name === "Ether" ? (
+                  <TransactionList chain="eth" decimals={position.decimals} />
+                ) : (
+                  <Text>Coming Soon...</Text>
+                )}
               </AccordionPanel>
             </AccordionItem>
           ))}

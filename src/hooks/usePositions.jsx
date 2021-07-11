@@ -17,7 +17,7 @@ export const usePositions = () => {
     if (isAuthenticated) {
       // Bring back a list of all tokens the user has
       console.log("Calling getAllERC20()...");
-      Moralis.Web3.getAllERC20().then((allPositions) => {
+      Moralis.Web3.getAllERC20({ usePost: true }).then((allPositions) => {
         console.log("All position data:", allPositions);
         const ids = allPositions
           .map((token) =>

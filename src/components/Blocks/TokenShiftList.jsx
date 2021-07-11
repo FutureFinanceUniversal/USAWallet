@@ -1,12 +1,13 @@
 import { Table, Thead, Tbody, Tr, Th, Td, Text } from "@chakra-ui/react";
 import { Skeleton } from "@chakra-ui/react";
 import { useTransactions } from "../../hooks/useTransactions";
+import { useTokenShifts } from "../../hooks/useTokenShifts";
 
-export const TransactionList = (props) => {
+export const TokenShiftList = (props) => {
   const { Txs, isLoading } = useTransactions({ chain: "eth" });
 
-  console.groupCollapsed("TransactionList");
-  console.log("Recieved transactions: ", Txs);
+  console.groupCollapsed("TokenShiftList");
+  console.log("Recieved token exchanges: ", Txs);
   console.groupEnd();
 
   if (!isLoading) {
@@ -45,5 +46,5 @@ export const TransactionList = (props) => {
         </Tbody>
       </Table>
     );
-  } else return <Text>Transactions Loading...</Text>;
+  } else return <Text>Token Transfers Loading...</Text>;
 };
