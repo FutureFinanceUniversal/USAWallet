@@ -25,33 +25,20 @@ export const AuthDrawer = (props) => {
   const [password, setPassword] = useState("");
 
   const handleSignUp = () => {
-    console.groupCollapsed("handleSignUp");
-    signup(userName ? userName : email, password, email, { usePost: true })
-      .then(console.debug("Moralis.signup() successful."))
-      .error((err) => console.error(err));
-    console.groupEnd();
+    signup(userName ? userName : email, password, email, { usePost: true });
   };
 
   const handleLogIn = () => {
-    console.groupCollapsed("handleLogIn");
     login(email, password === "" ? undefined : password, {
       usePost: true,
-    })
-      .then(console.debug("Moralis.login() successful."))
-      .error((err) => console.error(err));
-    console.groupEnd();
+    });
   };
 
   const handleAuthenticate = () => {
-    console.groupCollapsed("handleAuthenticate");
-    authenticate({ usePost: true }).then(
-      console.debug("Moralis.authenticate() successful.")
-    );
-    console.groupEnd();
+    authenticate({ usePost: true });
   };
 
   const handleSave = () => {
-    console.log("setUserData...");
     setUserData({
       userName,
       email,

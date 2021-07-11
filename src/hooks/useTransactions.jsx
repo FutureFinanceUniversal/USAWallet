@@ -8,6 +8,7 @@ export const useTransactions = (props) => {
   const address = user.attributes[props.chain + "Address"];
   const [Txs, setTxs] = useState(emptyList);
   const [isLoading, setIsLoading] = useState(true);
+
   console.groupCollapsed("useTransactions");
   console.log(
     isAuthenticated !== "0x"
