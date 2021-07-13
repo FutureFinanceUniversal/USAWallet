@@ -38,7 +38,7 @@ function App() {
         <GridItem
           rowSpan={8}
           colSpan={5}
-          borderWidth={2}
+          borderWidth={3}
           borderRadius="3xl"
           borderColor="red"
         >
@@ -47,7 +47,7 @@ function App() {
         <GridItem
           rowSpan={8}
           colSpan={3}
-          borderWidth={2}
+          borderWidth={3}
           borderRadius="3xl"
           borderColor={colorMode === "light" ? "blue" : "white"}
         >

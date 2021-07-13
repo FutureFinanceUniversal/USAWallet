@@ -12,7 +12,7 @@ console.groupCollapsed("ModeSelect");
 console.groupEnd();
 
 export const ModeSelect = () => {
-  const { actionMode, setActionMode } = useExperts();
+  const { actionMode, setActionMode, setDialog } = useExperts();
 
   return (
     <FormControl as="fieldset" borderWidth={2} paddingLeft={12}>
@@ -23,6 +23,7 @@ export const ModeSelect = () => {
             value="swap"
             onClick={() => {
               setActionMode("swap");
+              setDialog('"A token saved is a token earning."');
             }}
           >
             Trade
@@ -31,6 +32,7 @@ export const ModeSelect = () => {
             value="send"
             onClick={() => {
               setActionMode("send");
+              setDialog('"Find freedom with MetaMask."');
             }}
           >
             Send
@@ -39,6 +41,9 @@ export const ModeSelect = () => {
             value="receive"
             onClick={() => {
               setActionMode("recieve");
+              setDialog(
+                '"Ask not what your fiat can do for you.  Ask what crypto can you purchase!"'
+              );
             }}
           >
             Receive

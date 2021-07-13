@@ -1,14 +1,14 @@
 import { Image } from "@chakra-ui/react";
 import Benicorn from "../../media/characters/Benicorn.svg";
 export const UniSwap = (props) => {
-  //  props.speak('"A token saved is a token earning."');
   return (
     <Image
       onClick={props.poke}
-      boxSize="360px"
+      height="200px"
+      width="200px"
+      transform="scale(1.5,1.5) translate(0px,22px)"
       src={Benicorn}
-      alt="Liberty Fox"
-      marginLeft="10px"
+      alt="Benicorn"
     />
   );
 };

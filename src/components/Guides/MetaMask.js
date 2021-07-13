@@ -4,10 +4,12 @@ export const MetaMask = (props) => {
   return (
     <Image
       onClick={props.poke}
-      boxSize="460px"
+      height="200px"
+      width="200px"
+      transform="scale(1.78,1.78) translate(5px,9px)"
       src={LibertyFox}
       alt="Liberty Fox"
-      marginTop="-60px"
+      marginBottom="-2vh"
     />
   );
 };
