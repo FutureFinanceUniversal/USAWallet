@@ -26,17 +26,41 @@ function App() {
         <GridItem colSpan={10}>
           <TopNavBar />
         </GridItem>
-        <GridItem rowSpan={8} colSpan={1}>
+        <GridItem
+          rowSpan={8}
+          colSpan={1}
+          borderWidth={1}
+          borderRadius="3xl"
+          borderColor={colorMode === "light" ? "darkgrey" : "darkblue"}
+        >
           <LeftGutter />
         </GridItem>
-        <GridItem rowSpan={8} colSpan={5} borderWidth={1} borderRadius="lg">
+        <GridItem
+          rowSpan={8}
+          colSpan={5}
+          borderWidth={2}
+          borderRadius="3xl"
+          borderColor="red"
+        >
           <MainStage />
         </GridItem>
-        <GridItem rowSpan={8} colSpan={3} borderWidth={1} borderRadius="lg">
+        <GridItem
+          rowSpan={8}
+          colSpan={3}
+          borderWidth={2}
+          borderRadius="3xl"
+          borderColor={colorMode === "light" ? "blue" : "white"}
+        >
           <SideShow />
         </GridItem>
       </ExpertsProvider>
-      <GridItem rowSpan={8} colSpan={1}>
+      <GridItem
+        rowSpan={8}
+        colSpan={1}
+        borderWidth={1}
+        borderRadius="3xl"
+        borderColor={colorMode === "light" ? "pink" : "darkred"}
+      >
         <RightGutter />
       </GridItem>
       <GridItem colSpan={10}>

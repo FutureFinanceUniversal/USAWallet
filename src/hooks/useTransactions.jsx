@@ -7,7 +7,7 @@ export const useTransactions = (props) => {
   const { isAuthenticated, Moralis, user } = useMoralis();
   const address = user.attributes[props.chain + "Address"];
   const [Txs, setTxs] = useState(emptyList);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(1);
 
   console.groupCollapsed("useTransactions");
   console.log(
@@ -45,11 +45,11 @@ export const useTransactions = (props) => {
           return output;
         });
         setTxs(newTxs);
-        setIsLoading(false);
+        setIsLoading(0);
       });
     } else {
       setTxs(emptyList);
-      setIsLoading(true);
+      setIsLoading(1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Moralis.Web3, isAuthenticated]);

@@ -17,7 +17,7 @@ export const TokenTable = () => {
   console.log(!isLoading && positions);
 
   return (
-    <VStack borderWidth={2} borderRadius={10} width="100%" padding={5}>
+    <VStack borderWidth={4} borderRadius="3xl" width="100%" padding={5}>
       {!isLoading && (
         <Text>Total Value: ${parseFloat(totalValue).toFixed(2)}</Text>
       )}

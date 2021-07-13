@@ -10,7 +10,7 @@ export const usePositions = () => {
   const { isAuthenticated, Moralis } = useMoralis();
   const [positions, setPositions] = useState(emptyList);
   const [totalValue, setTotalValue] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(1);
   // const [allPositions, setAllPositions] = useState(emptyList);
 
   useEffect(() => {
@@ -65,13 +65,13 @@ export const usePositions = () => {
             // Done.  Report back to states.
             setPositions(newList);
             setTotalValue(runningTotal);
-            setIsLoading(false);
+            setIsLoading(0);
           });
       });
     } else {
       // No authentication.  Report blanks.
       setPositions(emptyList);
-      setIsLoading(true);
+      setIsLoading(1);
     }
   }, [Moralis.Web3, isAuthenticated]);
 

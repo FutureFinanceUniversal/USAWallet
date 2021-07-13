@@ -11,24 +11,28 @@ export const FromSelect = (props) => {
   const { positions, waiting } = usePositions();
 
   console.groupCollapsed("FromSelect");
-  console.debug(
-    waiting ? "Waiting for position data..." : "Received positions : ",
-    positions
-  );
-
   console.groupEnd();
+
+  const handleChange = (e) => {
+    props.setFromSymbol(e.target.value);
+  };
 
   return (
     <Box width="100%">
       <FormControl id="swapfrom" isRequired>
-        <Select id="fromToken" placeholder="Select a token to act with.">
+        <Select
+          id="fromToken"
+          placeholder="Select a token to act with."
+          onChange={handleChange}
+        >
           {!waiting &&
             positions.map((position) => {
               return (
-                <Tooltip label={position.description}>
+                <Tooltip key={position.symbol} label={position.description}>
                   <option
                     value={position.symbol.toUpperCase()}
                     onClick={() => {
+                      console.log("Selecting fromSymbol:", position.symbol);
                       props.setFromSymbol(position.symbol);
                     }}
                   >
