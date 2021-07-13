@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   FormControl,
   FormErrorMessage,
@@ -22,22 +21,20 @@ export const FromSelect = (props) => {
   return (
     <Box width="100%">
       <FormControl id="swapfrom" isRequired>
-        <Select id="fromToken" placeholder="Select a token to trade from.">
+        <Select id="fromToken" placeholder="Select a token to act with.">
           {!waiting &&
             positions.map((position) => {
               return (
                 <Tooltip label={position.description}>
                   <option
                     value={position.symbol.toUpperCase()}
-                    onClick={props.setFromSymbol(position.symbol)}
+                    onClick={() => {
+                      props.setFromSymbol(position.symbol);
+                    }}
                   >
-                    <Avatar
-                      name={position.symbol}
-                      src={position.image}
-                      size="sm"
-                    />
                     {position.tokens.toPrecision(3)} {position.name} @ $
-                    {position.price}/{position.symbol} = {position.value}
+                    {position.price.toFixed(2)}/{position.symbol.toUpperCase()}{" "}
+                    = ${position.value.toFixed(2)}
                   </option>
                 </Tooltip>
               );

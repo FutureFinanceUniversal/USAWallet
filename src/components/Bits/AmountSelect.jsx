@@ -44,7 +44,7 @@ export const AmountSelect = (props) => {
     <Box>
       <FormControl id="swapamount" isRequired>
         <NumberInput
-          enable={props.fromToken ? true : false}
+          enable={props.fromToken ? 1 : 0}
           max={maxSpend}
           min={0}
           onChange={(valueString) =>

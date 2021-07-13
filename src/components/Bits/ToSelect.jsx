@@ -38,7 +38,7 @@ export const ToSelect = () => {
               if (token) {
                 return (
                   <Tooltip label={token.description}>
-                    <option value={token.symbol}>
+                    <option key={token.name} value={token.symbol}>
                       <Avatar name={token.symbol} src={token.image} size="sm" />
                       {token.name} @ ${token.price}/{token.symbol}
                     </option>

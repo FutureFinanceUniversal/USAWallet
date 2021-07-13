@@ -6,19 +6,9 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
 import { usePositions } from "../../hooks/usePositions";
 import { TransactionList } from "./TransactionList";
-import { TokenShiftList } from "./TokenShiftList";
+//import { TokenShiftList } from "./TokenShiftList";
 
 export const TokenTable = () => {
   const { positions, isLoading, totalValue } = usePositions();
@@ -73,7 +63,10 @@ export const TokenTable = () => {
                 {position.name === "Ether" ? (
                   <TransactionList chain="eth" decimals={position.decimals} />
                 ) : (
-                  <Text>Coming Soon...</Text>
+                  <>
+                    <Text>Coming Soon...</Text>
+                    {/* <TokenShiftList chain="eth" decimals={position.decimals} /> */}
+                  </>
                 )}
               </AccordionPanel>
             </AccordionItem>
