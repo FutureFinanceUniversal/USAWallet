@@ -23,17 +23,26 @@ function App() {
       templateRows="repeat(10,1fr)"
     >
       <ExpertsProvider>
-        <GridItem colSpan={10}>
-          <TopNavBar />
-        </GridItem>
         <GridItem
-          rowSpan={8}
+          rowSpan={10}
           colSpan={1}
           borderWidth={1}
           borderRadius="3xl"
           borderColor={colorMode === "light" ? "darkgrey" : "darkblue"}
         >
           <LeftGutter />
+        </GridItem>
+        <GridItem colSpan={8} borderWidth={1} borderRadius="3xl">
+          <TopNavBar />
+        </GridItem>
+        <GridItem
+          rowSpan={10}
+          colSpan={1}
+          borderWidth={1}
+          borderRadius="3xl"
+          borderColor={colorMode === "light" ? "pink" : "darkred"}
+        >
+          <RightGutter />
         </GridItem>
         <GridItem
           rowSpan={8}
@@ -54,16 +63,8 @@ function App() {
           <SideShow />
         </GridItem>
       </ExpertsProvider>
-      <GridItem
-        rowSpan={8}
-        colSpan={1}
-        borderWidth={1}
-        borderRadius="3xl"
-        borderColor={colorMode === "light" ? "pink" : "darkred"}
-      >
-        <RightGutter />
-      </GridItem>
-      <GridItem colSpan={10}>
+
+      <GridItem colSpan={8} borderWidth={1} borderRadius="3xl">
         <BottomFooter />
       </GridItem>
     </Grid>

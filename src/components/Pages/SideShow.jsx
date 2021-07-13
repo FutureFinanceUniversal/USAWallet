@@ -29,7 +29,7 @@ export const SideShow = () => {
           borderRadius="3xl"
           borderColor="white"
         >
-          <Image src={LadyLiberty} alt="LadyLiberty" />
+          <Image borderRadius="3xl" src={LadyLiberty} alt="LadyLiberty" />
         </GridItem>
       )}
     </Grid>

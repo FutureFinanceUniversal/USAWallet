@@ -19,7 +19,7 @@ export const MainStage = () => {
         </Text>
         {isAuthenticated ? (
           <>
-            <Text>User Ethereum address: {user.attributes["ethAddress"]} </Text>
+            <Text>Ethereum address: {user.attributes["ethAddress"]}</Text>
             <ActionPanel />
             <TokenTable />
           </>

@@ -10,10 +10,8 @@ export const Assistants = () => {
   if (expertsOn === true) {
     return (
       <Flex margin={5}>
-        <Box width="200px" margin={7} padding={3}>
-          <Text justifyContent="center" alignItems="center">
-            {dialog}
-          </Text>
+        <Box width="200px" margin={7} padding={3} text-align="center">
+          <Text text-align="center">{dialog}</Text>
         </Box>
         <Spacer />
         <Box>

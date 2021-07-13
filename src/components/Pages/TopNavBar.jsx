@@ -4,19 +4,21 @@ import { ExpertButton } from "../Bits/ExpertButton";
 import { LightSwitch } from "../Bits/LightSwitch";
 import { AuthButton } from "../Bits/AuthButton";
 import { ProfileAvatar } from "../Bits/ProfileAvatar";
+import { useMoralis } from "react-moralis";
 import "./TopNavBar.css";
 
 import USAWalletEagleLogo from "../../media/logos/USAWalletLogo.svg";
 
 export const TopNavBar = (props) => {
+  const { isAuthenticated } = useMoralis();
   const colorMode = useColorMode();
   return (
     <Flex
       className="HeaderOuterFlex"
       mt="2%"
-      ml="5vw"
+      ml="1vw"
       mr="10vw"
-      width="90vw"
+      width="78vw"
       alignItems="center"
       justifyContent="space-between"
     >
@@ -25,7 +27,7 @@ export const TopNavBar = (props) => {
           name="USAWalletEagle"
           src={USAWalletEagleLogo}
           bg={colorMode === "light" ? "white" : "grey.900"}
-          mr={3}
+          mr={1}
         />
       </Box>
       <Text
@@ -37,10 +39,10 @@ export const TopNavBar = (props) => {
         USA Wallet
       </Text>
       <Spacer />
-      <ExpertButton />
+      {isAuthenticated && <ExpertButton />}
       <LightSwitch />
       <AuthButton />
-      <ProfileAvatar />
+      {isAuthenticated && <ProfileAvatar />}
     </Flex>
   );
 };
