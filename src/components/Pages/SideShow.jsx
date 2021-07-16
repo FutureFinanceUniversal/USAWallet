@@ -8,7 +8,7 @@ import LadyLiberty from "../../media/Padding/LadyLiberty.jpg";
 export const SideShow = () => {
   const { isAuthenticated } = useMoralis();
   return (
-    <Grid tempatateRows="repeat(10,fr)" gap={6} height="100%">
+    <Grid templateRows="repeat(10,fr)" gap={6} height="100%">
       <GridItem rowSpan={1} colSpan={1} justifyContent="center">
         <Text marginLeft="35%">
           ----------<i>Side Show</i>----------

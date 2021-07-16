@@ -5,10 +5,6 @@ import { useTransactions } from "../../hooks/useTransactions";
 export const TransactionList = (props) => {
   const { Txs, isLoading } = useTransactions({ chain: "eth" });
 
-  console.groupCollapsed("TransactionList");
-  console.log("Recieved transactions: ", Txs);
-  console.groupEnd();
-
   if (!isLoading) {
     return (
       <Table variant="striped">

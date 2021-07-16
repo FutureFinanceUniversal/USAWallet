@@ -13,9 +13,6 @@ import { TransactionList } from "./TransactionList";
 export const TokenTable = () => {
   const { positions, isLoading, totalValue } = usePositions();
 
-  console.groupCollapsed("TokenTable");
-  console.log(!isLoading && positions);
-
   return (
     <VStack borderWidth={4} borderRadius="3xl" width="100%" padding={5}>
       {!isLoading && (
@@ -26,7 +23,7 @@ export const TokenTable = () => {
           positions.map((position) => (
             <AccordionItem key={position.name} width="100%">
               <AccordionButton>
-                <Flex templateColumns="repeat(5,1fr)" gap={6}>
+                <Flex gap={6}>
                   <Box width="50px">
                     <Avatar
                       name={position.symbol}
