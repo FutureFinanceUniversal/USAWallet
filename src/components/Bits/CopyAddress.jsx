@@ -5,19 +5,11 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useMoralis } from "react-moralis";
 import { useState, useEffect } from "react";
 
-console.groupCollapsed("CopyAddress");
-console.groupEnd();
-
 export const CopyAddress = (props) => {
   const { isAuthenticated, user } = useMoralis();
   const { setActionMode, setDialog } = useExperts();
   const [copied, setCopied] = useState(false);
   const [data, setData] = useState("0x0");
-
-  console.groupCollapsed("CopyAddress");
-  console.log("Received props.mode:", props.mode);
-  console.log("copied state:", copied);
-  console.groupEnd();
 
   useEffect(() => {
     if (copied) {
@@ -29,7 +21,6 @@ export const CopyAddress = (props) => {
     } else {
       if (isAuthenticated) {
         setData(user?.attributes["ethAddress"]);
-        console.log("Prepped to copy user address to clipboard:", data);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

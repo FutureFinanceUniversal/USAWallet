@@ -9,13 +9,6 @@ export const useTransactions = (props) => {
   const [Txs, setTxs] = useState(emptyList);
   const [isLoading, setIsLoading] = useState(1);
 
-  console.groupCollapsed("useTransactions");
-  console.log(
-    isAuthenticated !== "0x"
-      ? props.chain + "::" + address + " is authenticated."
-      : "Unauthenticated."
-  );
-
   useEffect(() => {
     if (isAuthenticated) {
       Moralis.Web3.getTransactions({ usePost: true }).then((userTrans) => {
@@ -53,9 +46,6 @@ export const useTransactions = (props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Moralis.Web3, isAuthenticated]);
-
-  console.log(isLoading ? "Transactions loading..." : "Returning Txs: ", Txs);
-  console.groupEnd();
 
   return { Txs, isLoading };
 };

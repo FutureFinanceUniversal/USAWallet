@@ -10,9 +10,6 @@ import { usePositions } from "../../hooks/usePositions";
 export const FromSelect = (props) => {
   const { positions, waiting } = usePositions();
 
-  console.groupCollapsed("FromSelect");
-  console.groupEnd();
-
   const handleChange = (e) => {
     props.setFromSymbol(e.target.value);
   };

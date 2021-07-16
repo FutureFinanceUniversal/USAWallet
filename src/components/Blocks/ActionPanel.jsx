@@ -17,12 +17,6 @@ export const ActionPanel = () => {
   const [TxAmount, setTxAmount] = useState(0);
   const { actionMode } = useExperts("none");
 
-  console.groupCollapsed("Swapper");
-  console.debug("fromSymbol: ", fromSymbol);
-  console.debug("toSymbol: ", toSymbol);
-  console.debug("swapAmount: ", TxAmount);
-  console.groupEnd();
-
   return (
     <VStack
       alignItems="center"

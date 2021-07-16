@@ -5,8 +5,6 @@ const geckotail = "https://api.coingecko.com/api/v3/coins/";
 export const useTokenData = (props) => {
   const [tokenData, setTokenData] = useState({});
 
-  console.groupCollapsed("useTokenData");
-
   useEffect(() => {
     let myObj = {};
     if (props.tokenName) {
@@ -18,10 +16,6 @@ export const useTokenData = (props) => {
       })
         .then((response) => response.json())
         .then((geckoData) => {
-          console.debug(
-            "geckoData about contract for '" + props.tokenName + "':",
-            geckoData
-          );
           myObj = JSON.parse(geckoData);
           setTokenData({
             name: myObj.name,
@@ -37,7 +31,6 @@ export const useTokenData = (props) => {
           console.error(err);
         });
     } else {
-      console.debug("No props.tokenName given.");
       setTokenData({
         name: "---",
         symbol: "---",
@@ -56,9 +49,6 @@ export const useTokenData = (props) => {
       });
     }
   }, [props.tokenName]);
-
-  console.debug("Returning tokenData:", tokenData);
-  console.groupEnd();
 
   return tokenData;
 };

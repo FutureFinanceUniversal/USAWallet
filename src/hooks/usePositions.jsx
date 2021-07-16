@@ -16,9 +16,7 @@ export const usePositions = () => {
   useEffect(() => {
     if (isAuthenticated) {
       // Bring back a list of all tokens the user has
-      console.log("Calling getAllERC20()...");
       Moralis.Web3.getAllERC20({ usePost: true }).then((allPositions) => {
-        console.log("All position data:", allPositions);
         const ids = allPositions
           .map((token) =>
             token.name.toLowerCase() === "ether"
@@ -28,7 +26,6 @@ export const usePositions = () => {
           .filter((id) => Boolean(id))
           .join(",");
         const url = `${geckoHead}?vs_currency=usd&ids=${ids}` + geckoTail;
-        console.log(url);
         // Call CoinGecko API:
         fetch(url)
           .then((response) => response.json())

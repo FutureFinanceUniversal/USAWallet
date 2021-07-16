@@ -21,9 +21,6 @@ export const AuthButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
-  console.groupCollapsed("AuthButton");
-  console.groupEnd();
-
   return (
     <>
       {isAuthenticated ? (

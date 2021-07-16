@@ -3,9 +3,6 @@ import { EmailIcon, RepeatIcon, RepeatClockIcon } from "@chakra-ui/icons";
 import { useExperts } from "../../contexts/expertsContext";
 import { CopyAddress } from "./CopyAddress";
 
-console.groupCollapsed("ModeSelect");
-console.groupEnd();
-
 export const ModeSelect = () => {
   const { setActionMode, setDialog } = useExperts();
 

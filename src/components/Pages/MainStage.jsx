@@ -9,8 +9,6 @@ import WheatField from "../../media/Padding/wheatField.jpeg";
 
 export const MainStage = () => {
   const { isAuthenticated, user } = useMoralis();
-  console.groupCollapsed("MainStage");
-  console.log("Received isAuthenticated: ", isAuthenticated);
 
   return (
     <Flex justifyContent="center">

@@ -1,9 +1,6 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { useExperts } from "../../contexts/expertsContext";
 
-console.groupCollapsed("ExpertButton");
-console.groupEnd();
-
 export const ExpertButton = (props) => {
   const { expertsOn, toggleExperts } = useExperts();
 

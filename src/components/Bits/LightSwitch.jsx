@@ -1,9 +1,6 @@
 import { IconButton, useColorMode, Tooltip } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
-console.groupCollapsed("LightSwitch");
-console.groupEnd();
-
 export const LightSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (

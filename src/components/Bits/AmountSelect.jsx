@@ -38,8 +38,8 @@ export const AmountSelect = (props) => {
   console.groupCollapsed("AmountSelect");
   console.log("Received portfolio: ", positions);
   console.log("Received fromSymbol: ", props.fromSymbol);
-
   console.groupEnd();
+
   return (
     <Box>
       <FormControl id="swapamount" isRequired>
