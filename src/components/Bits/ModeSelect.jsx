@@ -1,56 +1,44 @@
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  HStack,
-  Radio,
-  RadioGroup,
-} from "@chakra-ui/react";
+import { Button, HStack, Tooltip } from "@chakra-ui/react";
+import { EmailIcon, RepeatIcon, RepeatClockIcon } from "@chakra-ui/icons";
 import { useExperts } from "../../contexts/expertsContext";
+import { CopyAddress } from "./CopyAddress";
 
 console.groupCollapsed("ModeSelect");
 console.groupEnd();
 
 export const ModeSelect = () => {
-  const { actionMode, setActionMode, setDialog } = useExperts();
+  const { setActionMode, setDialog } = useExperts();
 
   return (
-    <FormControl as="fieldset" borderWidth={2} paddingLeft={12}>
-      <FormLabel as="legend">Select an action</FormLabel>
-      <RadioGroup defaultValue={actionMode}>
-        <HStack spacing="24px">
-          <Radio
-            value="swap"
-            onClick={() => {
-              setActionMode("swap");
-              setDialog('"A token saved is a token earning."');
-            }}
-          >
-            Trade
-          </Radio>
-          <Radio
-            value="send"
-            onClick={() => {
-              setActionMode("send");
-              setDialog('"Find freedom with MetaMask."');
-            }}
-          >
-            Send
-          </Radio>
-          <Radio
-            value="receive"
-            onClick={() => {
-              setActionMode("recieve");
-              setDialog(
-                '"Ask not what your fiat can do for you.  Ask what crypto can you purchase!"'
-              );
-            }}
-          >
-            Receive
-          </Radio>
-        </HStack>
-      </RadioGroup>
-      <FormHelperText>Select a crypto activity</FormHelperText>
-    </FormControl>
+    <HStack>
+      <Tooltip hasArrow label="Swap some of one token for another token.">
+        <Button
+          rightIcon={<RepeatIcon />}
+          onClick={() => {
+            setActionMode("swap");
+            setDialog('"Select a token to receive."');
+          }}
+        >
+          Trade
+        </Button>
+      </Tooltip>
+      <Tooltip hasArrow label="Send some of this token to an address.">
+        <Button
+          rightIcon={<EmailIcon />}
+          onClick={() => {
+            setActionMode("send");
+            setDialog('"Enter the destination Ethereum address."');
+          }}
+        >
+          Send
+        </Button>
+      </Tooltip>
+      <Tooltip hasArrow label="Ask about our Crypto Patriot program.">
+        <Button rightIcon={<RepeatClockIcon />}>Invest</Button>
+      </Tooltip>
+      <Tooltip hasArrow label="Tell others where to send you crypto.">
+        <CopyAddress mode="receive" />
+      </Tooltip>
+    </HStack>
   );
 };

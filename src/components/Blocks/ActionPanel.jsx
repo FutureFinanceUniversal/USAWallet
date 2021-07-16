@@ -33,7 +33,7 @@ export const ActionPanel = () => {
       paddingRight={10}
       paddingTop={5}
       paddingBottom={5}
-      spacing="px"
+      spacing={6}
     >
       <Text>Create Action</Text>
       <FromSelect setFromSymbol={setFromSymbol} />

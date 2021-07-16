@@ -16,7 +16,7 @@ export const TransactionList = (props) => {
           <Tr>
             <Th>Date</Th>
             <Th>Time</Th>
-            <Th>Counter party</Th>
+            <Th>Transacted With</Th>
             <Th>Amount</Th>
           </Tr>
         </Thead>

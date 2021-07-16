@@ -44,9 +44,9 @@ export const TokenTable = () => {
                       {position.tokens.toPrecision(3)}
                     </Text>
                   </Box>
-                  <Box width="160px">
+                  <Box width="170px">
                     <Text ml={2} textAlign="left">
-                      @ {position.price.toFixed(2)}/
+                      @ ${position.price.toFixed(2)}/
                       {position.symbol.toUpperCase()}
                     </Text>
                   </Box>
