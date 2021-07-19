@@ -14,7 +14,10 @@ import { usePositions } from "../../hooks/usePositions";
 export const AmountSelect = (props) => {
   const [maxSpend, setMaxSpend] = useState(0);
   const [decimals, setDecimals] = useState(18);
+  const [value, setValue] = useState(0);
   const { positions, waiting } = usePositions();
+  const format = (val) => val + " " + props.fromSymbol.toUpperCase();
+  const parse = (val) => val.replace(" " + props.fromSymbol.toUpperCase(), "");
 
   useEffect(() => {
     let position = {};
@@ -45,11 +48,15 @@ export const AmountSelect = (props) => {
       <FormControl id="swapamount" isRequired>
         <NumberInput
           enable={props.fromToken ? 1 : 0}
+          step={maxSpend / 10}
           max={maxSpend}
           min={0}
-          onChange={(valueString) =>
-            props.setSwapAmount(valueString * 10 ** decimals)
-          }
+          precision={3}
+          onChange={(valueString) => {
+            setValue(parse(valueString));
+            props.setTxAmount(valueString * 10 ** decimals);
+          }}
+          value={format(value)}
         >
           <NumberInputField />
           <NumberInputStepper>

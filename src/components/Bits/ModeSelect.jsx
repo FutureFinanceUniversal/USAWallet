@@ -16,7 +16,7 @@ export const ModeSelect = () => {
             setDialog('"Select a token to receive."');
           }}
         >
-          Trade
+          Swap
         </Button>
       </Tooltip>
       <Tooltip hasArrow label="Send some of this token to an address.">
@@ -33,9 +33,7 @@ export const ModeSelect = () => {
       <Tooltip hasArrow label="Ask about our Crypto Patriot program.">
         <Button rightIcon={<RepeatClockIcon />}>Invest</Button>
       </Tooltip>
-      <Tooltip hasArrow label="Tell others where to send you crypto.">
-        <CopyAddress mode="receive" />
-      </Tooltip>
+      <CopyAddress mode="receive" />
     </HStack>
   );
 };

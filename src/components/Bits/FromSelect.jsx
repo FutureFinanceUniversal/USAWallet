@@ -30,10 +30,12 @@ export const FromSelect = (props) => {
                     value={position.symbol.toUpperCase()}
                     onClick={() => {
                       console.log("Selecting fromSymbol:", position.symbol);
+                      console.log("with fromAddress: ", position.address);
                       props.setFromSymbol(position.symbol);
+                      props.setFromAddress(position.address);
                     }}
                   >
-                    {position.tokens.toPrecision(3)} {position.name} @ $
+                    From {position.tokens.toPrecision(3)} {position.name} @ $
                     {position.price.toFixed(2)}/{position.symbol.toUpperCase()}{" "}
                     = ${position.value.toFixed(2)}
                   </option>

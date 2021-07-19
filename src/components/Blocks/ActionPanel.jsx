@@ -12,6 +12,7 @@ import { ReceiveCode } from "../Bits/ReceiveCode";
 
 export const ActionPanel = () => {
   const [fromSymbol, setFromSymbol] = useState("");
+  const [fromAddress, setFromAddress] = useState("");
   const [toSymbol, setToSymbol] = useState("");
   const [toAddress, setToAddress] = useState("0x");
   const [TxAmount, setTxAmount] = useState(0);
@@ -30,47 +31,47 @@ export const ActionPanel = () => {
       spacing={6}
     >
       <Text>Create Action</Text>
-      <FromSelect setFromSymbol={setFromSymbol} />
+      <FromSelect
+        setFromSymbol={setFromSymbol}
+        setFromAddress={setFromAddress}
+      />
       {fromSymbol !== "" && (
         <>
-          <ModeSelect />
+          <HStack>
+            <Text>Select amount: </Text>
+            <AmountSelect fromSymbol={fromSymbol} setTxAmount={setTxAmount} />
+          </HStack>
+          {TxAmount !== 0 && <ModeSelect />}
+
           {actionMode === "swap" && (
-            <VStack>
+            <HStack>
               <ToSelect
                 setToSymbol={setToSymbol}
+                setToAddress={setToAddress}
                 visible={fromSymbol === "" ? 0 : 1}
               />
-              <HStack>
-                <AmountSelect
-                  fromSymbol={fromSymbol}
-                  setTxAmount={setTxAmount}
-                />
-                <StartSwap
-                  fromSymbol={fromSymbol}
-                  toSymbol={toSymbol}
-                  swapAmount={TxAmount}
-                />
-              </HStack>
-            </VStack>
+              <StartSwap
+                fromSymbol={fromSymbol}
+                fromAddress={fromAddress}
+                toSymbol={toSymbol}
+                toAddress={toAddress}
+                swapAmount={TxAmount}
+              />
+            </HStack>
           )}
           {actionMode === "send" && (
-            <VStack>
+            <HStack>
               <ToAddress
                 setToAddress={setToAddress}
                 visible={fromSymbol === "" ? 0 : 1}
               />
-              <HStack>
-                <AmountSelect
-                  fromSymbol={fromSymbol}
-                  setTxAmount={setTxAmount}
-                />
-                <StartSend
-                  fromSymbol={fromSymbol}
-                  toAddress={toAddress}
-                  swapAmount={TxAmount}
-                />
-              </HStack>
-            </VStack>
+              <StartSend
+                fromSymbol={fromSymbol}
+                fromAddress={fromAddress}
+                toAddress={toAddress}
+                swapAmount={TxAmount}
+              />
+            </HStack>
           )}
           {actionMode === "receive" && <ReceiveCode />}
         </>

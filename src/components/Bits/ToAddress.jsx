@@ -7,7 +7,7 @@ export const ToAddress = () => {
   return (
     <Flex width="100%">
       <FormControl id="addressto" isRequired>
-        <Input variant="outline" placeholder="Address" />
+        <Input variant="outline" placeholder="To Address" />
         <FormErrorMessage>Please enter a valid address.</FormErrorMessage>
       </FormControl>
     </Flex>
