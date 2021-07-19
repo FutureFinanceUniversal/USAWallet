@@ -11,7 +11,9 @@ export const StartSwap = (props) => {
   // const swapTransaction = useSwap({});
   console.groupCollapsed("StartSwap");
   console.debug("Received fromSymbol: ", props.fromSymbol);
+  console.debug("Received fromAddress: ", props.fromAddress);
   console.debug("Received toSymbol: ", props.toSymbol);
+  console.debug("Received toAddress: ", props.toAddress);
   console.debug("Received swapAmount: ", props.swapAmount);
   console.groupEnd();
   return (
