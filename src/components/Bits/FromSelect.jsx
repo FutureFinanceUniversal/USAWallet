@@ -6,12 +6,15 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { usePositions } from "../../hooks/usePositions";
+import { useActions } from "../../contexts/actionsContext";
 
-export const FromSelect = (props) => {
+export const FromSelect = () => {
   const { positions, waiting } = usePositions();
+  const { setFromAddress, setFromSymbol } = useActions();
 
   const handleChange = (e) => {
-    props.setFromSymbol(e.target.value);
+    setFromSymbol(e.target.value.symbol);
+    setFromAddress(e.target.value.address);
   };
 
   return (
@@ -27,12 +30,13 @@ export const FromSelect = (props) => {
               return (
                 <Tooltip key={position.symbol} label={position.description}>
                   <option
-                    value={position.symbol.toUpperCase()}
+                    value={{
+                      symbol: position.symbol.toUpperCase(),
+                      address: position.address,
+                    }}
                     onClick={() => {
-                      console.log("Selecting fromSymbol:", position.symbol);
-                      console.log("with fromAddress: ", position.address);
-                      props.setFromSymbol(position.symbol);
-                      props.setFromAddress(position.address);
+                      setFromSymbol(position.symbol);
+                      setFromAddress(position.address);
                     }}
                   >
                     From {position.tokens.toPrecision(3)} {position.name} @ $

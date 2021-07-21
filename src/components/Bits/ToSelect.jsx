@@ -1,4 +1,5 @@
 import { FormControl, Flex, FormErrorMessage, Select } from "@chakra-ui/react";
+import { useActions } from "../../contexts/actionsContext";
 // import { useTokenData } from "../../hooks/useTokenData";
 
 const offeringData = [
@@ -55,9 +56,17 @@ const offeringData = [
   },
 ];
 
-export const ToSelect = (props) => {
-  console.groupCollapsed("ToSelect");
-  console.groupEnd();
+export const ToSelect = () => {
+  const { toSymbol, setToSymbol, toAddress, setToAddress } = useActions();
+
+  const handleChange = (e) => {
+    setToSymbol(e.target.value.symbol);
+    setToAddress(e.target.value.address);
+    console.groupCollapsed("ToSelect");
+    console.log("Set toSymbol: ", toSymbol);
+    console.log("Set toAddress: ", toAddress);
+    console.groupEnd();
+  };
 
   return (
     <Flex width="100%">
@@ -67,13 +76,8 @@ export const ToSelect = (props) => {
             return (
               <option
                 key={token.name}
-                value={token.symbol}
-                onClick={() => {
-                  console.log("Selecting fromSymbol:", token.symbol);
-                  console.log("with fromAddress: ", token.address);
-                  props.setToSymbol(token.symbol);
-                  props.setToAddress(token.address);
-                }}
+                value={{ symbol: token.symbol, address: token.address }}
+                onChange={handleChange}
               >
                 Into {token.name}
               </option>

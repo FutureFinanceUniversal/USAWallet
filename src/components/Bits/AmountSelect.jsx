@@ -10,51 +10,55 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { usePositions } from "../../hooks/usePositions";
+import { useActions } from "../../contexts/actionsContext";
 
-export const AmountSelect = (props) => {
+export const AmountSelect = () => {
   const [maxSpend, setMaxSpend] = useState(0);
   const [decimals, setDecimals] = useState(18);
   const [value, setValue] = useState(0);
   const { positions, waiting } = usePositions();
-  const format = (val) => val + " " + props.fromSymbol.toUpperCase();
-  const parse = (val) => val.replace(" " + props.fromSymbol.toUpperCase(), "");
+  const { fromSymbol, txAmount, setTxAmount } = useActions();
+
+  const format = (val) =>
+    fromSymbol === undefined ? "" : val + " " + fromSymbol?.toUpperCase();
+
+  const parse = (val) =>
+    fromSymbol === undefined
+      ? ""
+      : val.replace(" " + fromSymbol?.toUpperCase(), "");
 
   useEffect(() => {
     let position = {};
     if (!waiting) {
-      if (props.fromSymbol) {
+      if (fromSymbol) {
         position = positions.find(
           (position) =>
-            position.symbol.toUpperCase() === props.fromSymbol.toUpperCase()
+            position.symbol.toUpperCase() === fromSymbol?.toUpperCase()
         );
+        console.groupCollapsed("AmountSelect.useEffect()");
         console.log("Identified from position: ", position);
+        console.groupEnd();
         setMaxSpend(position ? position.tokens : 0);
         setDecimals(position ? position.decimals : 0);
-      } else {
-        console.error("No fromSymbol received.");
       }
-    } else {
-      console.error("No portfolio received.");
     }
-  }, [positions, props.fromSymbol, waiting]);
-
-  console.groupCollapsed("AmountSelect");
-  console.log("Received portfolio: ", positions);
-  console.log("Received fromSymbol: ", props.fromSymbol);
-  console.groupEnd();
+  }, [positions, fromSymbol, waiting]);
 
   return (
     <Box>
       <FormControl id="swapamount" isRequired>
         <NumberInput
-          enable={props.fromToken ? 1 : 0}
+          enable={fromSymbol ? 1 : 0}
           step={maxSpend / 10}
           max={maxSpend}
           min={0}
           precision={3}
           onChange={(valueString) => {
             setValue(parse(valueString));
-            props.setTxAmount(valueString * 10 ** decimals);
+            setTxAmount(valueString * 10 ** decimals);
+            console.groupCollapsed("AmountSelect.onChange()");
+            console.log("Set txAmount:", txAmount);
+            console.groupEnd();
           }}
           value={format(value)}
         >

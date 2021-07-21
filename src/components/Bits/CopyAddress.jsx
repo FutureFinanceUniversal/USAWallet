@@ -38,7 +38,7 @@ export const CopyAddress = (props) => {
           />
         ) : (
           <Button disabled={!isAuthenticated} rightIcon={<DownloadIcon />}>
-            Recieve
+            Receive
           </Button>
         )}
       </CopyToClipboard>

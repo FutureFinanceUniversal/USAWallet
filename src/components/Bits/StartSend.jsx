@@ -5,20 +5,32 @@ import {
   FormErrorMessage,
   Tooltip,
 } from "@chakra-ui/react";
+import { useActions } from "../../contexts/actionsContext";
 // import { useSwap } from "../../hooks/useSwap";
 
-export const StartSend = (props) => {
+export const StartSend = () => {
+  const { fromSymbol, fromAddress, toSymbol, toAddress, txAmount } =
+    useActions();
   // const swapTransaction = useSwap({});
-  console.groupCollapsed("StartSwap");
-  console.debug("Received fromSymbol: ", props.fromSymbol);
-  console.debug("Received toAddress ", props.toAddress);
-  console.debug("Received sendAmount: ", props.sendAmount);
-  console.groupEnd();
+
   return (
     <Box>
       <FormControl id="sendstart">
         <Tooltip label="Preview token transmission.">
-          <Button enabled={props.sendAmount > 0}>Preview Send Order</Button>
+          <Button
+            enabled={txAmount > 0}
+            onClick={() => {
+              console.groupCollapsed("StartSend");
+              console.debug("Received fromSymbol: ", fromSymbol);
+              console.debug("Received fromAddress: ", fromAddress);
+              console.debug("Received toSymbol: ", toSymbol);
+              console.debug("Received toAddress ", toAddress);
+              console.debug("Received txAmount: ", txAmount);
+              console.groupEnd();
+            }}
+          >
+            Preview Send Order
+          </Button>
         </Tooltip>
         <FormErrorMessage>Well shoot.</FormErrorMessage>
       </FormControl>

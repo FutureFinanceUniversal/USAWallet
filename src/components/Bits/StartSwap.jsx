@@ -5,28 +5,29 @@ import {
   FormErrorMessage,
   Tooltip,
 } from "@chakra-ui/react";
+import { useActions } from "../../contexts/actionsContext";
 // import { useSwap } from "../../hooks/useSwap";
 
-export const StartSwap = (props) => {
+export const StartSwap = () => {
+  const { fromSymbol, fromAddress, toSymbol, toAddress, txAmount } =
+    useActions();
   // const swapTransaction = useSwap({});
-  console.groupCollapsed("StartSwap");
-  console.debug("Received fromSymbol: ", props.fromSymbol);
-  console.debug("Received fromAddress: ", props.fromAddress);
-  console.debug("Received toSymbol: ", props.toSymbol);
-  console.debug("Received toAddress: ", props.toAddress);
-  console.debug("Received swapAmount: ", props.swapAmount);
-  console.groupEnd();
+
   return (
     <Box>
       <FormControl id="swapstart">
         <Tooltip label="Get quote for the current toke swap selections.">
           <Button
-            enabled={props.swapAmount > 0}
-            // onClick={swapTransaction({
-            //   fromSymbol: props.fromSymbol,
-            //   toSymbol: props.toSymbol,
-            //   swapAmount: props.swapAmount,
-            // })}
+            enabled={txAmount > 0}
+            onClick={() => {
+              console.groupCollapsed("StartSwap");
+              console.debug("Received fromSymbol: ", fromSymbol);
+              console.debug("Received fromAddress: ", fromAddress);
+              console.debug("Received toSymbol: ", toSymbol);
+              console.debug("Received toAddress: ", toAddress);
+              console.debug("Received txAmount: ", txAmount);
+              console.groupEnd();
+            }}
           >
             Preview Swap Order
           </Button>
