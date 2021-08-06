@@ -31,16 +31,18 @@ export const AmountSelect = () => {
     let position = {};
     if (!waiting) {
       if (fromSymbol) {
+        console.log("AmountSelect::useEffect::!waiting::fromSymbol");
         position = positions.find(
           (position) =>
             position.symbol.toUpperCase() === fromSymbol?.toUpperCase()
         );
-        console.groupCollapsed("AmountSelect.useEffect()");
-        console.log("Identified from position: ", position);
-        console.groupEnd();
         setMaxSpend(position ? position.tokens : 0);
         setDecimals(position ? position.decimals : 0);
+      } else {
+        console.log("AmountSelect::useEffect::!waiting::noFromSymbol.");
       }
+    } else {
+      console.log("AmountSelect::useEffect::waiting.");
     }
   }, [positions, fromSymbol, waiting]);
 
@@ -57,6 +59,9 @@ export const AmountSelect = () => {
             setValue(parse(valueString));
             setTxAmount(valueString * 10 ** decimals);
             console.groupCollapsed("AmountSelect.onChange()");
+            console.log("fromSymbol:", fromSymbol);
+            console.log("maxSpend:", maxSpend);
+            console.log("decimals:", decimals);
             console.log("Set txAmount:", txAmount);
             console.groupEnd();
           }}

@@ -1,10 +1,4 @@
-import {
-  Box,
-  FormControl,
-  FormErrorMessage,
-  Select,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Box, FormControl, FormErrorMessage, Select } from "@chakra-ui/react";
 import { usePositions } from "../../hooks/usePositions";
 import { useActions } from "../../contexts/actionsContext";
 
@@ -13,8 +7,8 @@ export const FromSelect = () => {
   const { setFromAddress, setFromSymbol } = useActions();
 
   const handleChange = (e) => {
-    setFromSymbol(e.target.value.symbol);
-    setFromAddress(e.target.value.address);
+    console.log("e.target.name:", e.target.name);
+    console.log("e.target.value:", e.target.value);
   };
 
   return (
@@ -23,27 +17,16 @@ export const FromSelect = () => {
         <Select
           id="fromToken"
           placeholder="Select a token to act with."
-          onChange={handleChange}
+          onSelect={handleChange}
         >
           {!waiting &&
             positions.map((position) => {
               return (
-                <Tooltip key={position.symbol} label={position.description}>
-                  <option
-                    value={{
-                      symbol: position.symbol.toUpperCase(),
-                      address: position.address,
-                    }}
-                    onClick={() => {
-                      setFromSymbol(position.symbol);
-                      setFromAddress(position.address);
-                    }}
-                  >
-                    From {position.tokens.toPrecision(3)} {position.name} @ $
-                    {position.price.toFixed(2)}/{position.symbol.toUpperCase()}{" "}
-                    = ${position.value.toFixed(2)}
-                  </option>
-                </Tooltip>
+                <option value={position}>
+                  From {position.tokens.toPrecision(3)} {position.name} @ $
+                  {position.price.toFixed(2)}/{position.symbol.toUpperCase()} =
+                  ${position.value.toFixed(2)}
+                </option>
               );
             })}
         </Select>
