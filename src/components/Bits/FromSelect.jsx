@@ -7,8 +7,9 @@ export const FromSelect = () => {
   const { setFromAddress, setFromSymbol } = useActions();
 
   const handleChange = (e) => {
-    console.log("e.target.name:", e.target.name);
-    console.log("e.target.value:", e.target.value);
+    let selectedIndex = e.target.options.selectedIndex - 1;
+    setFromSymbol(positions[selectedIndex].symbol);
+    setFromAddress(positions[selectedIndex].address);
   };
 
   return (
@@ -17,12 +18,17 @@ export const FromSelect = () => {
         <Select
           id="fromToken"
           placeholder="Select a token to act with."
-          onSelect={handleChange}
+          onChange={handleChange}
         >
           {!waiting &&
             positions.map((position) => {
               return (
-                <option value={position}>
+                <option
+                  value={{
+                    symbol: position.symbol.toUpperCase(),
+                    address: position.address,
+                  }}
+                >
                   From {position.tokens.toPrecision(3)} {position.name} @ $
                   {position.price.toFixed(2)}/{position.symbol.toUpperCase()} =
                   ${position.value.toFixed(2)}
