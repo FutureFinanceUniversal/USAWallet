@@ -21,11 +21,11 @@ export const StartSwap = () => {
             enabled={txAmount > 0}
             onClick={() => {
               console.groupCollapsed("StartSwap");
-              console.debug("Received fromSymbol: ", fromSymbol);
-              console.debug("Received fromAddress: ", fromAddress);
-              console.debug("Received toSymbol: ", toSymbol);
-              console.debug("Received toAddress: ", toAddress);
-              console.debug("Received txAmount: ", txAmount);
+              console.log("Received fromSymbol: ", fromSymbol);
+              console.log("Received fromAddress: ", fromAddress);
+              console.log("Received toSymbol: ", toSymbol);
+              console.log("Received toAddress: ", toAddress);
+              console.log("Received txAmount: ", txAmount);
               console.groupEnd();
             }}
           >

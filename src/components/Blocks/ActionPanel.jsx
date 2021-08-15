@@ -36,16 +36,16 @@ export const ActionPanel = () => {
           </HStack>
           {txAmount !== 0 && <ModeSelect />}
 
-          {actionMode === "swap" && (
+          {txAmount !== 0 && actionMode === "swap" && (
             <HStack>
-              <ToSelect visible={fromSymbol === "" ? 0 : 1} />
-              <StartSwap visible={toSymbol === "" ? 0 : 1} />
+              <ToSelect visible={fromSymbol === "" ? "hidden" : "visible"} />
+              <StartSwap visible={toSymbol === "" ? "hidden" : "visible"} />
             </HStack>
           )}
-          {actionMode === "send" && (
+          {txAmount !== 0 && actionMode === "send" && (
             <HStack>
-              <ToAddress visible={fromSymbol === "" ? 0 : 1} />
-              <StartSend visible={toAddress === "" ? 0 : 1} />
+              <ToAddress visible={fromSymbol === "" ? "hidden" : "visible"} />
+              <StartSend visible={toAddress === "" ? "hidden" : "visible"} />
             </HStack>
           )}
         </>

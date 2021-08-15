@@ -17,7 +17,7 @@ export const AmountSelect = () => {
   const [decimals, setDecimals] = useState(18);
   const [value, setValue] = useState(0);
   const { positions, waiting } = usePositions();
-  const { fromSymbol, txAmount, setTxAmount } = useActions();
+  const { fromSymbol, setTxAmount } = useActions();
 
   const format = (val) =>
     fromSymbol === undefined ? "" : val + " " + fromSymbol?.toUpperCase();
@@ -31,7 +31,6 @@ export const AmountSelect = () => {
     let position = {};
     if (!waiting) {
       if (fromSymbol) {
-        console.log("AmountSelect::useEffect::!waiting::fromSymbol");
         position = positions.find(
           (position) =>
             position.symbol.toUpperCase() === fromSymbol?.toUpperCase()
@@ -58,12 +57,6 @@ export const AmountSelect = () => {
           onChange={(valueString) => {
             setValue(parse(valueString));
             setTxAmount(valueString * 10 ** decimals);
-            console.groupCollapsed("AmountSelect.onChange()");
-            console.log("fromSymbol:", fromSymbol);
-            console.log("maxSpend:", maxSpend);
-            console.log("decimals:", decimals);
-            console.log("Set txAmount:", txAmount);
-            console.groupEnd();
           }}
           value={format(value)}
         >

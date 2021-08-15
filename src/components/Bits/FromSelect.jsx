@@ -9,7 +9,7 @@ export const FromSelect = () => {
   const handleChange = (e) => {
     let selectedIndex = e.target.options.selectedIndex - 1;
     setFromSymbol(positions[selectedIndex].symbol);
-    setFromAddress(positions[selectedIndex].address);
+    setFromAddress(positions[selectedIndex].tokenAddress);
   };
 
   return (
@@ -23,12 +23,7 @@ export const FromSelect = () => {
           {!waiting &&
             positions.map((position) => {
               return (
-                <option
-                  value={{
-                    symbol: position.symbol.toUpperCase(),
-                    address: position.address,
-                  }}
-                >
+                <option key={position.symbol}>
                   From {position.tokens.toPrecision(3)} {position.name} @ $
                   {position.price.toFixed(2)}/{position.symbol.toUpperCase()} =
                   ${position.value.toFixed(2)}

@@ -57,31 +57,24 @@ const offeringData = [
 ];
 
 export const ToSelect = () => {
-  const { toSymbol, setToSymbol, toAddress, setToAddress } = useActions();
+  const { setToSymbol, setToAddress } = useActions();
 
   const handleChange = (e) => {
-    setToSymbol(e.target.value.symbol);
-    setToAddress(e.target.value.address);
-    console.groupCollapsed("ToSelect");
-    console.log("Set toSymbol: ", toSymbol);
-    console.log("Set toAddress: ", toAddress);
-    console.groupEnd();
+    let selectedIndex = e.target.options.selectedIndex - 1;
+    setToSymbol(offeringData[selectedIndex].symbol);
+    setToAddress(offeringData[selectedIndex].address);
   };
 
   return (
     <Flex width="100%">
       <FormControl id="swapto" isRequired>
-        <Select placeholder="Select a token to receive.">
+        <Select
+          id="toToken"
+          placeholder="Select a token to receive."
+          onChange={handleChange}
+        >
           {offeringData.map((token) => {
-            return (
-              <option
-                key={token.name}
-                value={{ symbol: token.symbol, address: token.address }}
-                onChange={handleChange}
-              >
-                Into {token.name}
-              </option>
-            );
+            return <option key={token.name}>Into {token.name}</option>;
           })}
         </Select>
         <FormErrorMessage>
