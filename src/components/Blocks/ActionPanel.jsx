@@ -7,7 +7,7 @@ import { ModeSelect } from "../Bits/ModeSelect";
 import { ToSelect } from "../Bits/ToSelect";
 import { ToAddress } from "../Bits/ToAddress";
 import { AmountSelect } from "../Bits/AmountSelect";
-import { StartSwap } from "../Bits/StartSwap";
+import { GetQuote } from "../Bits/GetQuote";
 import { StartSend } from "../Bits/StartSend";
 
 export const ActionPanel = () => {
@@ -39,7 +39,7 @@ export const ActionPanel = () => {
           {txAmount !== 0 && actionMode === "swap" && (
             <HStack>
               <ToSelect visible={fromSymbol === "" ? "hidden" : "visible"} />
-              <StartSwap visible={toSymbol === "" ? "hidden" : "visible"} />
+              <GetQuote visible={toSymbol === "" ? "hidden" : "visible"} />
             </HStack>
           )}
           {txAmount !== 0 && actionMode === "send" && (
