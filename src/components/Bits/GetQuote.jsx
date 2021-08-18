@@ -6,14 +6,22 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { useActions } from "../../contexts/actionsContext";
-import { useState } from "react";
+import { useQuote } from "../../contexts/quoteContext";
 
 const oneInchHead = "https://api.1inch.exchange/v3.0/1/quote?";
 
 export const GetQuote = () => {
   const { fromSymbol, fromAddress, toSymbol, toAddress, txAmount } =
     useActions();
-  const [quote, setQuote] = useState("");
+  const {
+    setQuoteValid,
+    setFromToken,
+    setFromTokenAmount,
+    setProtocols,
+    setToToken,
+    setToTokenAmount,
+    setEstimatedGas,
+  } = useQuote();
 
   const goto1Inch = async (quote) => {
     console.groupCollapsed();
@@ -40,7 +48,13 @@ export const GetQuote = () => {
       .then((response) => response.json())
       .then((oneInchQuote) => {
         console.log("Recieved Quote:", oneInchQuote);
-        setQuote(oneInchQuote);
+        setFromToken(oneInchQuote.fromToken);
+        setFromTokenAmount(oneInchQuote.fromTokenAmount);
+        setProtocols(oneInchQuote.protocols[0]);
+        setToToken(oneInchQuote.toToken);
+        setToTokenAmount(oneInchQuote.toTokenAmount);
+        setEstimatedGas(oneInchQuote.estimatedGas);
+        setQuoteValid("true");
       });
   };
 
@@ -49,7 +63,7 @@ export const GetQuote = () => {
       <FormControl id="swapstart">
         <Tooltip label="Get quote for the current toke swap selections.">
           <Button
-            enabled={txAmount > 0}
+            enabled={txAmount > 0 ? "true" : "false"}
             onClick={async () => {
               await goto1Inch();
             }}

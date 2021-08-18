@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { usePositions } from "../../hooks/usePositions";
 import { useActions } from "../../contexts/actionsContext";
+import { useExperts } from "../../contexts/expertsContext";
 
 export const AmountSelect = () => {
   const [maxSpend, setMaxSpend] = useState(0);
@@ -18,6 +19,7 @@ export const AmountSelect = () => {
   const [value, setValue] = useState(0);
   const { positions, waiting } = usePositions();
   const { fromSymbol, setTxAmount } = useActions();
+  const { setActionMode, setDialog } = useExperts();
 
   const format = (val) =>
     fromSymbol === undefined ? "" : val + " " + fromSymbol?.toUpperCase();
@@ -43,6 +45,8 @@ export const AmountSelect = () => {
     } else {
       console.log("AmountSelect::useEffect::waiting.");
     }
+    setActionMode("recieve");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [positions, fromSymbol, waiting]);
 
   return (
@@ -57,6 +61,26 @@ export const AmountSelect = () => {
           onChange={(valueString) => {
             setValue(parse(valueString));
             setTxAmount(valueString * 10 ** decimals);
+            if (valueString > 0) {
+              setDialog(
+                "Now using " +
+                  ((100 * valueString) / maxSpend).toFixed(0) +
+                  "% of your " +
+                  fromSymbol +
+                  " in this action.  " +
+                  "Press one of the action buttons " +
+                  "when you are ready " +
+                  "to choose what to do with these tokens."
+              );
+            } else {
+              setDialog(
+                "Use the up and down arrows " +
+                  "to select how much " +
+                  fromSymbol +
+                  " to use in this action.  " +
+                  "Arrows step in 10% increments of your balance."
+              );
+            }
           }}
           value={format(value)}
         >

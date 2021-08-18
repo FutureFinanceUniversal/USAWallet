@@ -17,6 +17,7 @@ export const Assistants = () => {
         <Box>
           {actionMode === "swap" && <UniSwap />}
           {actionMode === "recieve" && <PayPal />}
+          {actionMode === "invest" && <MetaMask />}
           {actionMode === "send" && <MetaMask />}
         </Box>
       </Flex>

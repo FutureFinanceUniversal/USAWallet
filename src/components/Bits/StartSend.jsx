@@ -18,7 +18,7 @@ export const StartSend = () => {
       <FormControl id="sendstart">
         <Tooltip label="Preview token transmission.">
           <Button
-            enabled={txAmount > 0}
+            enabled={txAmount > 0 ? "true" : "false"}
             onClick={() => {
               console.groupCollapsed("StartSend");
               console.debug("Received fromSymbol: ", fromSymbol);

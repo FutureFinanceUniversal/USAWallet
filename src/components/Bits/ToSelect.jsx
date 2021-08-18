@@ -1,6 +1,6 @@
 import { FormControl, Flex, FormErrorMessage, Select } from "@chakra-ui/react";
 import { useActions } from "../../contexts/actionsContext";
-// import { useTokenData } from "../../hooks/useTokenData";
+import { useExperts } from "../../contexts/expertsContext";
 
 const offeringData = [
   {
@@ -57,12 +57,19 @@ const offeringData = [
 ];
 
 export const ToSelect = () => {
-  const { setToSymbol, setToAddress } = useActions();
+  const { fromSymbol, setToSymbol, setToAddress } = useActions();
+  const { setDialog } = useExperts();
 
   const handleChange = (e) => {
     let selectedIndex = e.target.options.selectedIndex - 1;
     setToSymbol(offeringData[selectedIndex].symbol);
     setToAddress(offeringData[selectedIndex].address);
+    setDialog(
+      "Use the 'Preview Swap Order' button to get an estimate for swapping " +
+        fromSymbol +
+        " to " +
+        offeringData[selectedIndex].symbol.toUpperCase()
+    );
   };
 
   return (

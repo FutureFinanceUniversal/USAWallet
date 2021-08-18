@@ -16,7 +16,7 @@ export const ModeSelect = () => {
             rightIcon={<RepeatIcon />}
             onClick={() => {
               setActionMode("swap");
-              setDialog('"Select a token to receive."');
+              setDialog('"Select a token to receive from the pull-down menu."');
             }}
           >
             Swap
@@ -34,7 +34,15 @@ export const ModeSelect = () => {
           </Button>
         </Tooltip>
         <Tooltip hasArrow label="Ask about our Crypto Patriot program.">
-          <Button rightIcon={<RepeatClockIcon />}>Invest</Button>
+          <Button
+            rightIcon={<RepeatClockIcon />}
+            onClick={() => {
+              setActionMode("invest");
+              setDialog("Ask about our CRYPTO PATRIOTS program, coming soon!");
+            }}
+          >
+            Invest
+          </Button>
         </Tooltip>
         <CopyAddress mode="receive" />
       </HStack>

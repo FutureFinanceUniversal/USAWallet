@@ -1,4 +1,6 @@
 import { Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import { useQuote } from "../../contexts/quoteContext";
+import { QuotePanel } from "../Blocks/QuotePanel";
 import { Assistants } from "../Blocks/Assistants";
 import { useMoralis } from "react-moralis";
 import React from "react";
@@ -7,6 +9,8 @@ import LadyLiberty from "../../media/Padding/LadyLiberty.jpg";
 
 export const SideShow = () => {
   const { isAuthenticated } = useMoralis();
+  const { quoteValid } = useQuote();
+
   return (
     <Grid templateRows="repeat(10,fr)" gap={6} height="100%">
       <GridItem rowSpan={1} colSpan={1} justifyContent="center">
@@ -16,7 +20,9 @@ export const SideShow = () => {
       </GridItem>
       {isAuthenticated ? (
         <>
-          <GridItem rowSpan={15} colSpan={1}></GridItem>
+          <GridItem rowSpan={15} colSpan={1}>
+            {quoteValid && QuotePanel}
+          </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
             <Assistants />
           </GridItem>
