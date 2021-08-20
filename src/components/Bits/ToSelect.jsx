@@ -1,6 +1,9 @@
 import { FormControl, Flex, FormErrorMessage, Select } from "@chakra-ui/react";
 import { useActions } from "../../contexts/actionsContext";
 import { useExperts } from "../../contexts/expertsContext";
+import { useQuote } from "../../contexts/quoteContext";
+
+const oneInchHead = "https://api.1inch.exchange/v3.0/1/quote?";
 
 const offeringData = [
   {
@@ -57,19 +60,85 @@ const offeringData = [
 ];
 
 export const ToSelect = () => {
-  const { fromSymbol, setToSymbol, setToAddress } = useActions();
+  const {
+    fromSymbol,
+    fromAddress,
+    toSymbol,
+    setToSymbol,
+    toAddress,
+    setToAddress,
+    txAmount,
+  } = useActions();
   const { setDialog } = useExperts();
+  const {
+    setQuoteValid,
+    setFromToken,
+    setFromTokenAmount,
+    setProtocols,
+    setToToken,
+    setToTokenAmount,
+    setEstimatedGas,
+  } = useQuote();
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     let selectedIndex = e.target.options.selectedIndex - 1;
     setToSymbol(offeringData[selectedIndex].symbol);
     setToAddress(offeringData[selectedIndex].address);
     setDialog(
-      "Use the 'Preview Swap Order' button to get an estimate for swapping " +
+      "Estimating costs to swap " +
         fromSymbol +
         " to " +
-        offeringData[selectedIndex].symbol.toUpperCase()
+        offeringData[selectedIndex].symbol.toUpperCase() +
+        " ... "
     );
+    console.groupCollapsed("ToSelect");
+    console.log(
+      "Transferring ",
+      txAmount,
+      " ",
+      fromSymbol,
+      " to ",
+      toSymbol,
+      "..."
+    );
+    console.groupEnd();
+
+    await fetch(
+      oneInchHead +
+        "fromTokenAddress=" +
+        fromAddress +
+        "&toTokenAddress=" +
+        toAddress +
+        "&amount=" +
+        txAmount
+    )
+      .then((response) => response.json())
+      .then((oneInchQuote) => {
+        console.log("Recieved Quote:", oneInchQuote);
+        oneInchQuote.fromToken && setFromToken(oneInchQuote.fromToken);
+        oneInchQuote.fromTokenAmount &&
+          setFromTokenAmount(oneInchQuote.fromTokenAmount);
+        oneInchQuote.protocols && setProtocols(oneInchQuote.protocols[0]);
+        oneInchQuote.toToken && setToToken(oneInchQuote.toToken);
+        oneInchQuote.toTokenAmount &&
+          setToTokenAmount(oneInchQuote.toTokenAmount);
+        oneInchQuote.estimatedGas && setEstimatedGas(oneInchQuote.estimatedGas);
+        if (oneInchQuote.protocols !== undefined) {
+          setQuoteValid("true");
+          setDialog(
+            "Push 'Do it!' to execute swap.  Or adjust inputs to update quote."
+          );
+        } else {
+          setDialog(
+            "Something went wrong: " +
+              oneInchQuote.error +
+              " re: " +
+              oneInchQuote.message
+          );
+          setQuoteValid("false");
+          return;
+        }
+      });
   };
 
   return (

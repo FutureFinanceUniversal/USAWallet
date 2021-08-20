@@ -156,7 +156,7 @@ export const AuthDrawer = (props) => {
             <Button
               onClick={handlePasswordReset}
               boxShadow="dark-lg"
-              disabled="true"
+              disabled="1"
             >
               Password Reset
             </Button>

@@ -7,12 +7,11 @@ import { ModeSelect } from "../Bits/ModeSelect";
 import { ToSelect } from "../Bits/ToSelect";
 import { ToAddress } from "../Bits/ToAddress";
 import { AmountSelect } from "../Bits/AmountSelect";
-import { GetQuote } from "../Bits/GetQuote";
 import { StartSend } from "../Bits/StartSend";
 
 export const ActionPanel = () => {
   const { actionMode } = useExperts("none");
-  const { txAmount, fromSymbol, toSymbol, toAddress } = useActions();
+  const { txAmount, fromSymbol, toAddress } = useActions();
 
   return (
     <VStack
@@ -39,7 +38,6 @@ export const ActionPanel = () => {
           {txAmount !== 0 && actionMode === "swap" && (
             <HStack>
               <ToSelect visible={fromSymbol === "" ? "hidden" : "visible"} />
-              <GetQuote visible={toSymbol === "" ? "hidden" : "visible"} />
             </HStack>
           )}
           {txAmount !== 0 && actionMode === "send" && (

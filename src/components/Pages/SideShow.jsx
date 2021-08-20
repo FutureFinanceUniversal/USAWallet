@@ -21,7 +21,7 @@ export const SideShow = () => {
       {isAuthenticated ? (
         <>
           <GridItem rowSpan={15} colSpan={1}>
-            {quoteValid && QuotePanel}
+            {quoteValid === "true" && <QuotePanel />}
           </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
             <Assistants />
