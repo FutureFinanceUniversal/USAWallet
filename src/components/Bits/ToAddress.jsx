@@ -20,6 +20,7 @@ export const ToAddress = () => {
         <Input
           variant="outline"
           placeholder="Enter recipiant address"
+          boxShadow="dark-lg"
           onChange={handleChange}
         />
         <FormErrorMessage>Please enter a valid address.</FormErrorMessage>

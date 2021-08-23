@@ -11,7 +11,6 @@ import { useActions } from "../../contexts/actionsContext";
 export const StartSend = () => {
   const { fromSymbol, fromAddress, toSymbol, toAddress, txAmount } =
     useActions();
-  // const swapTransaction = useSwap({});
 
   return (
     <Box>
@@ -19,6 +18,7 @@ export const StartSend = () => {
         <Tooltip label="Preview token transmission.">
           <Button
             enabled={txAmount > 0 ? "true" : "false"}
+            boxShadow="dark-lg"
             onClick={() => {
               console.groupCollapsed("StartSend");
               console.debug("Received fromSymbol: ", fromSymbol);

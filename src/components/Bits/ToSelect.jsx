@@ -1,9 +1,6 @@
 import { FormControl, Flex, FormErrorMessage, Select } from "@chakra-ui/react";
 import { useActions } from "../../contexts/actionsContext";
 import { useExperts } from "../../contexts/expertsContext";
-import { useQuote } from "../../contexts/quoteContext";
-
-const oneInchHead = "https://api.1inch.exchange/v3.0/1/quote?";
 
 const offeringData = [
   {
@@ -60,85 +57,50 @@ const offeringData = [
 ];
 
 export const ToSelect = () => {
-  const {
-    fromSymbol,
-    fromAddress,
-    toSymbol,
-    setToSymbol,
-    toAddress,
-    setToAddress,
-    txAmount,
-  } = useActions();
+  const { fromSymbol, fromAddress, setToSymbol, setToAddress, txAmount } =
+    useActions();
   const { setDialog } = useExperts();
-  const {
-    setQuoteValid,
-    setFromToken,
-    setFromTokenAmount,
-    setProtocols,
-    setToToken,
-    setToTokenAmount,
-    setEstimatedGas,
-  } = useQuote();
 
   const handleChange = async (e) => {
-    let selectedIndex = e.target.options.selectedIndex - 1;
-    setToSymbol(offeringData[selectedIndex].symbol);
-    setToAddress(offeringData[selectedIndex].address);
-    setDialog(
-      "Estimating costs to swap " +
-        fromSymbol +
-        " to " +
-        offeringData[selectedIndex].symbol.toUpperCase() +
-        " ... "
-    );
-    console.groupCollapsed("ToSelect");
-    console.log(
-      "Transferring ",
-      txAmount,
-      " ",
-      fromSymbol,
-      " to ",
-      toSymbol,
-      "..."
-    );
-    console.groupEnd();
-
-    await fetch(
-      oneInchHead +
-        "fromTokenAddress=" +
-        fromAddress +
-        "&toTokenAddress=" +
-        toAddress +
-        "&amount=" +
-        txAmount
-    )
-      .then((response) => response.json())
-      .then((oneInchQuote) => {
-        console.log("Recieved Quote:", oneInchQuote);
-        oneInchQuote.fromToken && setFromToken(oneInchQuote.fromToken);
-        oneInchQuote.fromTokenAmount &&
-          setFromTokenAmount(oneInchQuote.fromTokenAmount);
-        oneInchQuote.protocols && setProtocols(oneInchQuote.protocols[0]);
-        oneInchQuote.toToken && setToToken(oneInchQuote.toToken);
-        oneInchQuote.toTokenAmount &&
-          setToTokenAmount(oneInchQuote.toTokenAmount);
-        oneInchQuote.estimatedGas && setEstimatedGas(oneInchQuote.estimatedGas);
-        if (oneInchQuote.protocols !== undefined) {
-          setQuoteValid("true");
-          setDialog(
-            "Push 'Do it!' to execute swap.  Or adjust inputs to update quote."
-          );
-        } else {
-          setDialog(
-            "Something went wrong: " +
-              oneInchQuote.error +
-              " re: " +
-              oneInchQuote.message
-          );
-          setQuoteValid("false");
-          return;
-        }
-      });
+    console.groupCollapsed("ToSelect::handleChange():");
+    console.log("event:", e);
+    console.log("offeringData:", offeringData);
+    let selectedIndex = e.target.options.selectedIndex;
+    console.log("selectedIndex:", selectedIndex);
+    if (selectedIndex > 0) {
+      let selectedSymbol =
+        e.target.childNodes[selectedIndex].attributes.value.value;
+      console.log("selectedOption:", selectedSymbol);
+      setToSymbol(selectedSymbol.toUpperCase());
+      let selectedRecord = offeringData.find(
+        (token) => token.symbol === selectedSymbol
+      );
+      console.log("selectedRecord:", selectedRecord);
+      let selectedAddress = selectedRecord.address;
+      console.log("selectedAddress:", selectedAddress);
+      setToAddress(selectedAddress);
+      console.log("...quote request parameters:");
+      console.log("fromSymbol:", fromSymbol);
+      console.log("fromTokenAddress: **", fromAddress);
+      console.log("toSymbol:", selectedSymbol);
+      console.log("toAddress: **", selectedAddress);
+      console.log("amount: **", txAmount);
+      console.groupEnd();
+      setDialog(
+        "Press the 'Get Swap Quote' " +
+          "to get a quote to swap " +
+          fromSymbol +
+          " to " +
+          selectedSymbol.toUpperCase() +
+          "."
+      );
+    } else {
+      console.log("null selection made.");
+      console.groupEnd();
+      setToSymbol("");
+      setToAddress("");
+      setDialog("Select a token to receive from the pull-down menu.");
+    }
   };
 
   return (
@@ -147,11 +109,20 @@ export const ToSelect = () => {
         <Select
           id="toToken"
           placeholder="Select a token to receive."
+          boxShadow="dark-lg"
           onChange={handleChange}
         >
-          {offeringData.map((token) => {
-            return <option key={token.name}>Into {token.name}</option>;
-          })}
+          {offeringData
+            .filter(
+              (token) => token.symbol.toUpperCase() !== fromSymbol.toUpperCase()
+            )
+            .map((token) => {
+              return (
+                <option key={token.name} value={token.symbol}>
+                  Into {token.name}
+                </option>
+              );
+            })}
         </Select>
         <FormErrorMessage>
           Please select from the given list of input tokens.

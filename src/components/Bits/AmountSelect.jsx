@@ -58,6 +58,7 @@ export const AmountSelect = () => {
           max={maxSpend}
           min={0}
           precision={3}
+          boxShadow="dark-lg"
           onChange={(valueString) => {
             setValue(parse(valueString));
             setTxAmount(valueString * 10 ** decimals);

@@ -38,8 +38,6 @@ export const QuotePanel = () => {
         </Text>
         <Avatar name={fromToken.name} src={fromToken.logoURI} size="sm" />
         <Text>{fromToken.symbol}</Text>
-      </HStack>
-      <HStack>
         <Text>
           For {(toTokenAmount / 10 ** toToken.decimals).toPrecision(3)}
         </Text>
@@ -49,13 +47,17 @@ export const QuotePanel = () => {
       <Text>
         Spending {estimatedGas / 10 ** 9} ETH transaction fee across:{" "}
       </Text>
-      {protocols.map((dex) => (
-        <Text key={dex[0].name}> {dex[0].name}</Text>
-      ))}
+      <HStack>
+        {protocols.map((dex) => (
+          <Text key={dex[0].name}> {dex[0].name}</Text>
+        ))}
+      </HStack>
 
       <HStack>
         <Button>Do it.</Button>
-        <Button onClick={handleCancel}>Cancel</Button>
+        <Button onClick={handleCancel} boxShadow="dark-lg">
+          Cancel
+        </Button>
       </HStack>
     </VStack>
   );

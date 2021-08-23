@@ -1,17 +1,23 @@
 import { HStack, VStack, Text } from "@chakra-ui/react";
 
 import { useActions } from "../../contexts/actionsContext";
-import { FromSelect } from "../Bits/FromSelect";
 import { useExperts } from "../../contexts/expertsContext";
-import { ModeSelect } from "../Bits/ModeSelect";
-import { ToSelect } from "../Bits/ToSelect";
-import { ToAddress } from "../Bits/ToAddress";
+
+import { FromSelect } from "../Bits/FromSelect";
 import { AmountSelect } from "../Bits/AmountSelect";
+import { ModeSelect } from "../Bits/ModeSelect";
+
+// Swap mode.
+import { ToSelect } from "../Bits/ToSelect";
+import { RequestQuote } from "../Bits/RequestQuote";
+
+// Send mode.
+import { ToAddress } from "../Bits/ToAddress";
 import { StartSend } from "../Bits/StartSend";
 
 export const ActionPanel = () => {
   const { actionMode } = useExperts("none");
-  const { txAmount, fromSymbol, toAddress } = useActions();
+  const { txAmount, fromSymbol, toSymbol, toAddress } = useActions();
 
   return (
     <VStack
@@ -38,6 +44,7 @@ export const ActionPanel = () => {
           {txAmount !== 0 && actionMode === "swap" && (
             <HStack>
               <ToSelect visible={fromSymbol === "" ? "hidden" : "visible"} />
+              {toSymbol !== "" && <RequestQuote />}
             </HStack>
           )}
           {txAmount !== 0 && actionMode === "send" && (

@@ -14,6 +14,7 @@ export const ModeSelect = () => {
         <Tooltip hasArrow label="Swap some of one token for another token.">
           <Button
             rightIcon={<RepeatIcon />}
+            boxShadow="dark-lg"
             onClick={() => {
               setActionMode("swap");
               setDialog('"Select a token to receive from the pull-down menu."');
@@ -25,6 +26,7 @@ export const ModeSelect = () => {
         <Tooltip hasArrow label="Send some of this token to an address.">
           <Button
             rightIcon={<EmailIcon />}
+            boxShadow="dark-lg"
             onClick={() => {
               setActionMode("send");
               setDialog('"Enter the destination Ethereum address."');
@@ -36,6 +38,7 @@ export const ModeSelect = () => {
         <Tooltip hasArrow label="Ask about our Crypto Patriot program.">
           <Button
             rightIcon={<RepeatClockIcon />}
+            boxShadow="dark-lg"
             onClick={() => {
               setActionMode("invest");
               setDialog("Ask about our CRYPTO PATRIOTS program, coming soon!");
@@ -44,7 +47,7 @@ export const ModeSelect = () => {
             Invest
           </Button>
         </Tooltip>
-        <CopyAddress mode="receive" />
+        <CopyAddress mode="receive" boxShadow="dark-lg" />
       </HStack>
     </>
   );

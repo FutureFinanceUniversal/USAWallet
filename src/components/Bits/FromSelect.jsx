@@ -33,10 +33,11 @@ export const FromSelect = () => {
 
   return (
     <Box width="100%">
-      <FormControl id="swapfrom" isRequired>
+      <FormControl id="swapfrom" boxShadow="dark-lg" isRequired>
         <Select
           id="fromToken"
           placeholder="Select a token to act with."
+          boxShadow="dark-lg"
           onChange={handleChange}
         >
           {!waiting &&
