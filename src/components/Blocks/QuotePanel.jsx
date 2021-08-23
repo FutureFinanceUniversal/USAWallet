@@ -1,6 +1,7 @@
 import { Avatar, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { useQuote } from "../../contexts/quoteContext";
 import { useExperts } from "../../contexts/expertsContext";
+import { DoItButton } from "../Bits/DoItButton";
 
 export const QuotePanel = () => {
   const {
@@ -54,7 +55,7 @@ export const QuotePanel = () => {
       </HStack>
 
       <HStack>
-        <Button>Do it.</Button>
+        <DoItButton />
         <Button onClick={handleCancel} boxShadow="dark-lg">
           Cancel
         </Button>

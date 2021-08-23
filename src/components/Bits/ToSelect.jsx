@@ -1,6 +1,7 @@
 import { FormControl, Flex, FormErrorMessage, Select } from "@chakra-ui/react";
 import { useActions } from "../../contexts/actionsContext";
 import { useExperts } from "../../contexts/expertsContext";
+import { useQuote } from "../../contexts/quoteContext";
 
 const offeringData = [
   {
@@ -60,6 +61,7 @@ export const ToSelect = () => {
   const { fromSymbol, fromAddress, setToSymbol, setToAddress, txAmount } =
     useActions();
   const { setDialog } = useExperts();
+  const { setQuoteValid } = useQuote();
 
   const handleChange = async (e) => {
     console.groupCollapsed("ToSelect::handleChange():");
@@ -101,6 +103,7 @@ export const ToSelect = () => {
       setToAddress("");
       setDialog("Select a token to receive from the pull-down menu.");
     }
+    setQuoteValid("false");
   };
 
   return (
