@@ -1,10 +1,13 @@
 import { Button, Tooltip } from "@chakra-ui/react";
+
 import { useQuote } from "../../contexts/quoteContext";
 import { useExperts } from "../../contexts/expertsContext";
 import { useActions } from "../../contexts/actionsContext";
+
 import { useMoralis } from "react-moralis";
 
-const oneInchHead = "https://api.1inch.exchange/v3.0/1/swap?";
+const oneInchApprove = "https://api.1inch.exchange/v3.0/1/approve/calldata";
+const oneInchSwap = "https://api.1inch.exchange/v3.0/1/swap?";
 const refAddress = "0x9A8A1C76e46940462810465F83F44dA706953F69";
 
 export const DoItButton = (props) => {
@@ -13,12 +16,38 @@ export const DoItButton = (props) => {
   const { user } = useMoralis();
   const { setDialog } = useExperts();
 
-  const handlePress = async () => {
-    setDialog("Executing swap...");
+  const preApprove = async () => {
+    setDialog(
+      "Pre-approving 1Inch to transact " + txAmount + " of your ",
+      fromToken?.symbol.toUpperCase()
+    );
+    await fetch(
+      oneInchApprove +
+        "?tokenAddress=" +
+        fromToken?.address +
+        "&amount=" +
+        txAmount
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setDialog("1Inch approval submitted.");
+        console.groupCollapsed("DoItButton::preApprove");
+        console.log("fromToken?.address:", fromToken?.address);
+        console.log("amount:", txAmount);
+        console.log("Response:", response);
+        console.groupEnd();
+      });
+  };
 
-    if (0) {
+  const handlePress = async () => {
+    await preApprove();
+
+    if (1) {
+      setDialog(
+        "Submitting swap transaction.  Please review and sign in MetaMask."
+      );
       await fetch(
-        oneInchHead +
+        oneInchSwap +
           "fromTokenAddress=" +
           fromToken.address +
           "&toTokenAddress=" +
@@ -27,21 +56,21 @@ export const DoItButton = (props) => {
           txAmount +
           "&fromAddress=" +
           user?.attributes["ethAddress"] +
-          "&slippage=3" +
-          "&referrerAddress=" +
-          refAddress +
-          "&fee=0.2"
+          "&slippage=3"
       )
         .then((response) => response.json())
-        .then((receipt) => {
-          setDialog(
-            "Recieved ",
-            receipt.toTokenAmount,
-            receipt.fromToken.symbol
-          );
+        .then((response) => {
+          setDialog("Recieved.  Check console log.");
+          console.groupCollapsed("DoItButton::handlePress");
+          console.log("fromTokenAddress=", fromToken.address);
+          console.log("toTokenAddress=", toToken.address);
+          console.log("amount=", txAmount);
+          console.log("fromAddress=", user?.attributes["ethAddress"]);
+          console.log("response:", response);
+          console.groupEnd();
         });
     } else {
-      setDialog("Check console log.");
+      setDialog("Debug mode.  Check console log.");
       console.groupCollapsed("DoItButton");
       console.log("fromTokenAddress:", fromToken.address);
       console.log("toTokenAddress:", toToken.address);
