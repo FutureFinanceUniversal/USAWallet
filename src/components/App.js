@@ -11,6 +11,7 @@ import { BottomFooter } from "./Pages/BottomFooter";
 import { ExpertsProvider } from "../contexts/expertsContext";
 import { ActionsProvider } from "../contexts/actionsContext";
 import { QuoteProvider } from "../contexts/quoteContext";
+import { ApprovalProvider } from "../contexts/approvalContext";
 
 function App() {
   const { colorMode } = useColorMode();
@@ -27,45 +28,47 @@ function App() {
       <ExpertsProvider>
         <ActionsProvider>
           <QuoteProvider>
-            <GridItem
-              rowSpan={10}
-              colSpan={1}
-              borderWidth={1}
-              borderRadius="3xl"
-              borderColor={colorMode === "light" ? "darkgrey" : "darkblue"}
-            >
-              <LeftGutter />
-            </GridItem>
-            <GridItem colSpan={8} borderWidth={1} borderRadius="3xl">
-              <TopNavBar />
-            </GridItem>
-            <GridItem
-              rowSpan={10}
-              colSpan={1}
-              borderWidth={1}
-              borderRadius="3xl"
-              borderColor={colorMode === "light" ? "pink" : "darkred"}
-            >
-              <RightGutter />
-            </GridItem>
-            <GridItem
-              rowSpan={8}
-              colSpan={5}
-              borderWidth={3}
-              borderRadius="3xl"
-              borderColor="red"
-            >
-              <MainStage />
-            </GridItem>
-            <GridItem
-              rowSpan={8}
-              colSpan={3}
-              borderWidth={3}
-              borderRadius="3xl"
-              borderColor={colorMode === "light" ? "blue" : "white"}
-            >
-              <SideShow />
-            </GridItem>
+            <ApprovalProvider>
+              <GridItem
+                rowSpan={10}
+                colSpan={1}
+                borderWidth={1}
+                borderRadius="3xl"
+                borderColor={colorMode === "light" ? "darkgrey" : "darkblue"}
+              >
+                <LeftGutter />
+              </GridItem>
+              <GridItem colSpan={8} borderWidth={1} borderRadius="3xl">
+                <TopNavBar />
+              </GridItem>
+              <GridItem
+                rowSpan={10}
+                colSpan={1}
+                borderWidth={1}
+                borderRadius="3xl"
+                borderColor={colorMode === "light" ? "pink" : "darkred"}
+              >
+                <RightGutter />
+              </GridItem>
+              <GridItem
+                rowSpan={8}
+                colSpan={5}
+                borderWidth={3}
+                borderRadius="3xl"
+                borderColor="red"
+              >
+                <MainStage />
+              </GridItem>
+              <GridItem
+                rowSpan={8}
+                colSpan={3}
+                borderWidth={3}
+                borderRadius="3xl"
+                borderColor={colorMode === "light" ? "blue" : "white"}
+              >
+                <SideShow />
+              </GridItem>
+            </ApprovalProvider>
           </QuoteProvider>
         </ActionsProvider>
       </ExpertsProvider>
