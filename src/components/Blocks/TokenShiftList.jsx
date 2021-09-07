@@ -1,9 +1,9 @@
 import { Table, Thead, Tbody, Tr, Th, Td, Text } from "@chakra-ui/react";
 import { Skeleton } from "@chakra-ui/react";
-import { useTokenShifts } from "../../hooks/useTokenShifts";
+import { useTokenTransfers } from "../../hooks/useTokenTransfers";
 
 export const TokenShiftList = (props) => {
-  const { Txs, isLoading } = useTokenShifts({ chain: "eth" });
+  const { Txs, isLoading } = useTokenTransfers({ chain: "eth" });
 
   console.groupCollapsed("TokenShiftList");
   console.log("Recieved token exchanges: ", Txs);
