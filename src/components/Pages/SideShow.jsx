@@ -2,8 +2,11 @@ import { Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import { useQuote } from "../../contexts/quoteContext";
 import { QuotePanel } from "../Blocks/QuotePanel";
 import { Assistants } from "../Blocks/Assistants";
+
+import { OnboardingButton } from "../Bits/OnboardingButton";
+import { AddNetworkButton } from "../Bits/AddNetworkButton";
+
 import { useMoralis } from "react-moralis";
-import React from "react";
 
 import LadyLiberty from "../../media/Padding/LadyLiberty.jpg";
 
@@ -20,6 +23,8 @@ export const SideShow = () => {
       </GridItem>
       {isAuthenticated ? (
         <>
+          <OnboardingButton />
+          <AddNetworkButton />
           <GridItem rowSpan={15} colSpan={1}>
             {quoteValid === "true" && <QuotePanel />}
           </GridItem>

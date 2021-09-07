@@ -18,7 +18,6 @@ export const DoItButton = (props) => {
   const { Moralis, user } = useMoralis();
   const { setDialog } = useExperts();
 
-  const [preApprovalTx, setPreApprovalTx] = useState({});
   const [preApproved, setPreApproved] = useState(false);
 
   const preApproveTx = async () => {
@@ -42,7 +41,6 @@ export const DoItButton = (props) => {
         console.log("amount:", txAmount);
         console.log("Response:", response);
         console.groupEnd();
-        setPreApprovalTx(response);
         return response;
       })
       .then((response) => {
