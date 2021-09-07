@@ -40,7 +40,7 @@ export function OnboardingButton() {
         .then(handleNewAccounts);
       window.ethereum.on("accountsChanged", handleNewAccounts);
       return () => {
-        window.ethereum.off("accountsChanged", handleNewAccounts);
+        window.ethereum.on("accountsChanged", handleNewAccounts);
       };
     }
   }, []);
