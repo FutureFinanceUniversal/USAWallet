@@ -14,7 +14,7 @@ export const useTokenTransfers = (props) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // const APIKeyHex = web3.utils.asciiToHex(APIKey);
+      const APIKeyHex = web3.utils.asciiToHex(APIKey);
       const chain = props.chain ? "?chain=" + props.chain : "?chain=eth";
       const userAddress = user.attributes[chain + "address"];
       const requestURL = serverURL + userAddress + endPoint + chain;
@@ -27,7 +27,7 @@ export const useTokenTransfers = (props) => {
       fetch(requestURL, {
         method: "GET",
         headers: {
-          "X-API-Key": APIKey,
+          "X-API-Key": APIKeyHex,
         },
       })
         .then((response) => response.json())
