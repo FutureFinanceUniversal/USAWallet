@@ -52,5 +52,16 @@ export const AddNetworkButton = (props) => {
     console.groupEnd();
   }
 
-  return <Button onClick={addPolygonNetwork}>Add Polygon</Button>;
+  return (
+    <Button
+      mr={2}
+      mt={-2}
+      className="ExpertButton"
+      boxShadow="dark-lg"
+      visible={window.ethereum.chainId === networkIDHex ? "hidden" : "visible"}
+      onClick={addPolygonNetwork}
+    >
+      Add Polygon
+    </Button>
+  );
 };

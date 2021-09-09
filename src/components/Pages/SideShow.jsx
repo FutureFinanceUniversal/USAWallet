@@ -5,6 +5,7 @@ import { Assistants } from "../Blocks/Assistants";
 
 import { OnboardingButton } from "../Bits/OnboardingButton";
 import { AddNetworkButton } from "../Bits/AddNetworkButton";
+import { FiatBridgeButton } from "../Bits/FiatBridgeButton";
 
 import { useMoralis } from "react-moralis";
 
@@ -25,6 +26,7 @@ export const SideShow = () => {
         <>
           <OnboardingButton />
           <AddNetworkButton />
+          <FiatBridgeButton />
           <GridItem rowSpan={15} colSpan={1}>
             {quoteValid === "true" && <QuotePanel />}
           </GridItem>
