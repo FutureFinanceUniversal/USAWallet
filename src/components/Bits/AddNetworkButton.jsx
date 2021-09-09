@@ -1,32 +1,44 @@
 import { Button } from "@chakra-ui/react";
+import { useMoralis } from "react-moralis";
 
 export const AddNetworkButton = (props) => {
   const ethereum = window.ethereum;
+  const { web3 } = useMoralis();
+  const networkIDHex = web3.utils.toHex("137");
 
-  async function addPolygonTestnetNetwork() {
+  async function addPolygonNetwork() {
+    console.groupCollapsed("AddNetworkButton");
+    console.log(
+      "web3.utils.toHex(137) should be 13881: ",
+      web3.utils.toHex(80001)
+    );
+    console.log("networkIDHex:", networkIDHex);
+
     try {
+      console.log("Attempting simple ethereum.request()...");
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0x13881" }], // Hexadecimal version of 80001, prefixed with 0x
+        params: [{ chainId: networkIDHex }], // Hexadecimal version of 80001, prefixed with 0x
       });
     } catch (error) {
       if (error.code === 4902) {
+        console.log("...failed.  attempting complex call...");
         try {
           await ethereum.request({
             method: "wallet_addEthereumChain",
             params: [
               {
-                chainId: "0x13881", // Hexadecimal version of 80001, prefixed with 0x
-                chainName: "POLYGON Mumbai",
+                chainId: networkIDHex, // Hexadecimal version of 80001, prefixed with 0x
+                chainName: "POLYGON Mainnet",
                 nativeCurrency: {
                   name: "MATIC",
                   symbol: "MATIC",
                   decimals: 18,
                 },
                 rpcUrls: [
-                  "https://speedy-nodes-nyc.moralis.io/cebf590f4bcd4f12d78ee1d4/polygon/mumbai",
+                  "https://speedy-nodes-nyc.moralis.io/b18bab00073ceeeeed714bf2/polygon/mainnet",
                 ],
-                blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com/"],
+                blockExplorerUrls: ["https://explorer.matic.network//"],
                 iconUrls: [""],
               },
             ],
@@ -36,7 +48,9 @@ export const AddNetworkButton = (props) => {
         }
       }
     }
+    console.log("...process end.");
+    console.groupEnd();
   }
 
-  return <Button onClick={addPolygonTestnetNetwork}>Add Polygon</Button>;
+  return <Button onClick={addPolygonNetwork}>Add Polygon</Button>;
 };

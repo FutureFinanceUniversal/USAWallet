@@ -3,7 +3,7 @@ import { useMoralis } from "react-moralis";
 
 const serverURL = "https://deep-index.moralis.io/api/v2/";
 const endPoint = "/erc20/transfers";
-const APIKey =
+const MoralisAPIKey =
   "7YWJtHybS03C0z09QQjND12bIX7d9uR1n3DYApZ1PXVTYprU3MKrTXhLsQ0rNfAK";
 const emptyList = [];
 
@@ -14,7 +14,7 @@ export const useTokenTransfers = (props) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const APIKeyHex = web3.utils.asciiToHex(APIKey);
+      const APIKeyHex = web3.utils.asciiToHex(MoralisAPIKey);
       const chain = props.chain ? "?chain=" + props.chain : "?chain=eth";
       const userAddress = user.attributes[chain + "address"];
       const requestURL = serverURL + userAddress + endPoint + chain;

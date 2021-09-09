@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { usePositions } from "../../hooks/usePositions";
 import { TransactionList } from "./TransactionList";
-import { TokenShiftList } from "./TokenShiftList";
+// import { TokenShiftList } from "./TokenShiftList";
 
 export const TokenTable = () => {
   const { positions, isLoading, totalValue } = usePositions();
@@ -57,10 +57,8 @@ export const TokenTable = () => {
                 </Flex>
               </AccordionButton>
               <AccordionPanel pb={4}>
-                {position.name === "Ether" ? (
+                {position.name === "Ether" && (
                   <TransactionList chain="eth" decimals={position.decimals} />
-                ) : (
-                  <TokenShiftList chain="eth" decimals={position.decimals} />
                 )}
               </AccordionPanel>
             </AccordionItem>
