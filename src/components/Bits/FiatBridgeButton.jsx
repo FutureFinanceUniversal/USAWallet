@@ -10,10 +10,13 @@ export const FiatBridgeButton = () => {
   const handlePress = async () => {
     await Moralis.initialize(appId);
     Moralis.serverURL = serverUrl;
+
+    // Am I missing something here?
     console.groupCollapsed("FiatBridgeButton");
     console.log("Moralis:", Moralis);
     console.groupEnd();
 
+    // ...yes actually.  initPlugins() is not a member of Moralis.
     await Moralis.initPlugins();
     Moralis.Plugins.fiat.buy();
   };
