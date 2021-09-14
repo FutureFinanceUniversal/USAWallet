@@ -44,9 +44,11 @@ export const FromSelect = () => {
             positions.map((position) => {
               return (
                 <option key={position.symbol}>
-                  From {position.tokens.toPrecision(3)} {position.name} @ $
-                  {position.price.toFixed(2)}/{position.symbol.toUpperCase()} =
-                  ${position.value.toFixed(2)}
+                  From {position.tokens && position.tokens.toPrecision(3)}{" "}
+                  {position.name} @ $
+                  {position.price && position.price.toFixed(2)}/
+                  {position.symbol && position.symbol.toUpperCase()} = $
+                  {position?.value.toFixed(2)}
                 </option>
               );
             })}
