@@ -8874,10 +8874,10 @@ mock-fs@^4.1.0:
   resolved "https://registry.yarnpkg.com/mock-fs/-/mock-fs-4.14.0.tgz#ce5124d2c601421255985e6e94da80a7357b1b18"
   integrity sha512-qYvlv/exQ4+svI3UOvPUpLDF0OMX5euvUH0Ny4N5QyRyhNdgAgUrVH3iUINSzEPLvx0kbo/Bp28GJKIqvE7URw==
 
-moralis@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.25.tgz#991dab946f4cb3527b3a1f9f7c3b244cf68d32b5"
-  integrity sha512-osDHi6rI5e+W8PRRyUABxT4x5bv/g2i77M8X88keg3UriGyBo/Kh009JAFX2so4MKA6K11b06SRoqFEUFM4oRA==
+moralis@^0.0.45:
+  version "0.0.45"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-0.0.45.tgz#f246e49edff0e0d2fce67fc7bef0e4ebf6398137"
+  integrity sha512-9vjEtjoKznxo3ei8+vXYyv32x+FpopiCi2t/a5A4gNu8DZY2xJG3VY3QmrasUiI8uYekSDD1j4eGvuoovwMTvg==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@babel/runtime-corejs3" "7.12.5"
@@ -10855,10 +10855,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-moralis@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/react-moralis/-/react-moralis-0.1.9.tgz#243eabc5a657d284949b4ae36f46ad8c714297a2"
-  integrity sha512-eHxHnQuDCAsG3p61acy1YqTKZhv7dl71awa0wAl18I9jtpWOPSZt4W/ubxb5Yqlc3DexYvCtm+K64CMIBOHdfg==
+react-moralis@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-moralis/-/react-moralis-0.2.3.tgz#b3723e269fc2bb8b63ff089e8528f57993bdc888"
+  integrity sha512-cxwslQ7mSeQHt453k1zyGgTXXnzE2sC9Mqs/W7/2kKa8sxOuwOegoFW0j/tqg2zAu3To0QMqN2K/5xmCL8b79g==
   dependencies:
     fast-deep-equal "^3.1.3"
     immer "^9.0.1"
