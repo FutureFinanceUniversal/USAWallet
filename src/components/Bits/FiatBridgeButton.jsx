@@ -14,11 +14,12 @@ export const FiatBridgeButton = () => {
     // Am I missing something here?
     console.groupCollapsed("FiatBridgeButton");
     console.log("Moralis:", Moralis);
-    console.groupEnd();
-
-    // ...yes actually.  initPlugins() is not a member of Moralis.
+    console.log("Moralis.initPlugins()...");
     await Moralis.initPlugins();
+    console.log("Moralis.Plugins.fiat.buy()...");
     Moralis.Plugins.fiat.buy();
+    console.log("...end of process?...");
+    console.groupEnd();
   };
 
   return (

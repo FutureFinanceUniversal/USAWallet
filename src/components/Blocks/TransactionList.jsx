@@ -6,6 +6,9 @@ export const TransactionList = (props) => {
   const { Txs, isLoading } = useTransactions({ chain: "eth" });
 
   if (!isLoading) {
+    console.groupCollapsed("TransactionList");
+    console.log(Txs);
+    console.groupEnd();
     return (
       <Table variant="striped">
         <Thead>
@@ -27,11 +30,12 @@ export const TransactionList = (props) => {
               </Tr>
             </Skeleton>
           ) : (
-            Txs.map((Tx) => {
+            Txs?.map((Tx) => {
+              Tx.timestamp = new Date(Tx.block_timestamp);
               return (
                 <Tr key={Tx.hash}>
-                  <Td>{Tx.block_timestamp.toLocaleDateString()}</Td>
-                  <Td>{Tx.block_timestamp.toLocaleTimeString()}</Td>
+                  <Td>{Tx.timestamp.toLocaleDateString()}</Td>
+                  <Td>{Tx.timestamp.toLocaleTimeString()}</Td>
                   <Td>{Tx.counterparty}</Td>
                   <Td>{(Tx.amount / 10 ** props.decimals).toPrecision(3)}</Td>
                 </Tr>
