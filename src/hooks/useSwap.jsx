@@ -1,15 +1,17 @@
 import { Avatar, HStack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { use1InchTokenList } from "./use1InchTokenList";
-
-const oneInchEndpoint = "https://api.1inch.exchange/v3.0/1/quote?";
+import { useNetwork } from "../contexts/networkContext";
 
 export const useSwap = (props) => {
+  const { networkId } = useNetwork();
   const [transaction, setTransaction] = useState({});
   const { fromTokenData } = use1InchTokenList({
     tokenSymbol: props.fromSymbol,
   });
   const { toTokenData } = use1InchTokenList({ tokenSymbol: props.toSymbol });
+  const oneInchEndpoint =
+    "https://api.1inch.exchange/v3.0/" + networkId + "/quote?";
 
   console.groupCollapsed("useSwap");
 

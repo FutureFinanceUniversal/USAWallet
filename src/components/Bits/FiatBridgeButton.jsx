@@ -1,11 +1,13 @@
 import { Button } from "@chakra-ui/react";
-import { useMoralis } from "react-moralis";
+//import { useMoralis } from "react-moralis";
+import { Moralis } from "moralis";
 
+// const apiKey = "pk_test_hs1NrnFxqmMLHWTNAwnr6yXC08raWH7JAThOpswFb3E0";
 const appId = "UeAbfYO3C29W5EHdz5c5BuCItODRdOw8RcHDpAud";
 const serverUrl = "https://qvgfrpeymufw.bigmoralis.com:2053/server";
 
 export const FiatBridgeButton = () => {
-  const { Moralis } = useMoralis();
+  //const { Moralis } = useMoralis();
 
   const handlePress = async () => {
     await Moralis.initialize(appId);

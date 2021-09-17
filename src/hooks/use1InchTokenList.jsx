@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-
-const oneInchTail = "https://api.1inch.exchange/v3.0/1/tokens";
+import { useNetwork } from "../contexts/networkContext";
 
 export const use1InchTokenList = (props) => {
   const [tokenList, setTokenList] = useState({});
+  const { networkId } = useNetwork();
+  const oneInchTail =
+    "https://api.1inch.exchange/v3.0/" + networkId + "/tokens";
 
   console.groupCollapsed("use1InchTokenList");
 

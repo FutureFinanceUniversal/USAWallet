@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
+import { useNetwork } from "../contexts/networkContext";
 
 const serverURL = "https://deep-index.moralis.io/api/v2/";
 const endPoint = "/erc20/transfers";
@@ -11,13 +12,13 @@ export const useTokenTransfers = (props) => {
   const { isAuthenticated, user, web3 } = useMoralis();
   const [Txs, setTxs] = useState(emptyList);
   const [isLoading, setIsLoading] = useState(false);
+  const { networkName } = useNetwork();
 
   useEffect(() => {
     if (isAuthenticated) {
       const APIKeyHex = web3.utils.asciiToHex(MoralisAPIKey);
-      const chain = props.chain ? "?chain=" + props.chain : "?chain=eth";
-      const userAddress = user.attributes[chain + "address"];
-      const requestURL = serverURL + userAddress + endPoint + chain;
+      const userAddress = user.attributes[networkName + "address"];
+      const requestURL = serverURL + userAddress + endPoint + networkName;
 
       console.groupCollapsed("useTokenTransfers");
       console.log("requestURL:", requestURL);
